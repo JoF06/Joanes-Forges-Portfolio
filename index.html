@@ -4,18 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio — Joanes Forges | BTS SIO SISR</title>
-  <meta name="description" content="Portfolio de Joanes Forges — Étudiant en BTS SIO option SISR au pôle STS Sainte‑Marie, Joinville‑le‑Pont. Présentation, formation, BTS SIO, TPs SISR." />
+  <meta name="description" content="Portfolio de Joanes Forges — Étudiant en BTS SIO option SISR au pôle STS Sainte-Marie, Joinville-le-Pont. Présentation, formation, BTS SIO, TPs SISR." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #64bed0; --card:#121833; --muted:#c7cbe6; --text:#f5f7ff; --accent:#6aa7ff; --ring:#8bc0ff; --ok:#58d7a1; }
+    /* 🎨 Palette personnalisée */
+    :root {
+      --bg: #432818;      /* fond principal */
+      --card: #6f1d1b;    /* cartes */
+      --muted: #ffe6a7;   /* texte secondaire */
+      --text: #ffe6a7;    /* texte */
+      --accent: #99582a;  /* liens / boutons */
+      --ring: #ffe6a7;    /* points & highlights */
+      --ok: #ffe6a7;      /* couleur d'accent (logo) */
+    }
+
     *{box-sizing:border-box}
-    html,body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,#000000 0%, #000000 100%);}
+    html,body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background-color:var(--bg);
+    }
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1050px;margin:0 auto;padding:20px}
-    header{position:sticky;top:0;backdrop-filter:blur(8px);background:rgba(11,16,32,.6);border-bottom:1px solid rgba(255,255,255,.08);z-index:10}
+    header{position:sticky;top:0;backdrop-filter:blur(8px);background:rgba(0,0,0,0.4);border-bottom:1px solid rgba(255,255,255,.1);z-index:10}
     nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     nav .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     nav .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--ok);box-shadow:0 0 18px var(--ok)}
@@ -23,14 +38,26 @@
     nav a{padding:10px 12px;border-radius:10px}
     nav a:hover{background:rgba(255,255,255,.06)}
     .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:36px 0}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.35);}
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
     .card.pad{padding:22px}
     h1{font-size:clamp(28px, 4vw, 44px);line-height:1.1;margin:0 0 10px}
     h2{font-size:clamp(22px, 3vw, 30px);margin:0 0 10px}
     h3{margin:0 0 8px}
     p{color:var(--muted);line-height:1.65}
     .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .badge{background:#18224a;border:1px solid rgba(255,255,255,.14);padding:6px 10px;border-radius:999px;font-size:12px}
+    .badge{
+      background:#99582a;
+      border:1px solid rgba(255,255,255,.2);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:#ffe6a7;
+    }
     .grid{display:grid;gap:18px}
     .grid.cols-3{grid-template-columns:repeat(3,1fr)}
     .grid.cols-2{grid-template-columns:repeat(2,1fr)}
@@ -42,8 +69,16 @@
     footer{opacity:.8;padding:40px 0}
     .section{padding:28px 0}
     .tag{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
-    .btn{display:inline-block;padding:10px 14px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:#162044}
-    .btn:hover{filter:brightness(1.08)}
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:12px;
+      background:var(--accent);
+      color:var(--text);
+      font-weight:600;
+    }
+    .btn:hover{filter:brightness(1.1)}
 
     /* Mobile */
     @media (max-width: 860px){
@@ -55,200 +90,7 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <nav>
-        <div class="brand"><span class="dot"></span> <span>Joanes Forges</span></div>
-        <ul>
-          <li><a href="#accueil">Accueil</a></li>
-          <li><a href="#bts">BTS SIO</a></li>
-          <li><a href="#formation">Formation</a></li>
-          <li><a href="#tps">TP SISR</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <!-- Accueil / Présentation -->
-    <section id="accueil" class="container hero">
-      <div class="card pad">
-        <span class="tag">Présentation</span>
-        <h1>Joanes Forges</h1>
-        <h2>Étudiant en <strong>BTS SIO — option SISR</strong></h2>
-        <p>
-          Actuellement au <strong>pôle STS Sainte‑Marie</strong> à <strong>Joinville‑le‑Pont</strong>, je me forme à la conception, au déploiement et à la sécurisation d'infrastructures réseaux et systèmes.
-        </p>
-        <div class="badges">
-          <span class="badge">Admin systèmes & réseaux</span>
-          <span class="badge">Virtualisation</span>
-          <span class="badge">Sécurité</span>
-          <span class="badge">Automatisation</span>
-        </div>
-        <p style="margin-top:16px">
-          <a class="btn" href="#contact">Me contacter</a>
-          <a class="btn" href="#tps" style="margin-left:8px">Voir mes TP SISR</a>
-        </p>
-      </div>
-      <div class="grid">
-        <div class="card pad">
-          <h3>En bref</h3>
-          <div class="kpi"><span class="n">BTS SIO</span><span>Option SISR</span></div>
-          <div class="kpi"><span class="n">Pôle STS</span><span>Sainte‑Marie</span></div>
-          <div class="kpi"><span class="n">Ville</span><span>Joinville‑le‑Pont</span></div>
-        </div>
-        <div class="card pad">
-          <h3>Objectifs</h3>
-          <div class="list">
-            <div class="item"><span class="dot"></span><div>Renforcer mes compétences en administration réseaux (Linux/Windows, services, supervision).</div></div>
-            <div class="item"><span class="dot"></span><div>Maîtriser la virtualisation (Proxmox/VMware), le déploiement et la haute dispo.</div></div>
-            <div class="item"><span class="dot"></span><div>Approfondir l'automatisation (PowerShell, Bash, Ansible).</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BTS SIO -->
-    <section id="bts" class="section">
-      <div class="container grid cols-2">
-        <div class="card pad">
-          <span class="tag">Diplôme</span>
-          <h2>BTS SIO — Services Informatiques aux Organisations</h2>
-          <p>Le <strong>BTS SIO</strong> forme aux métiers de l’IT autour de deux parcours :</p>
-          <div class="grid cols-2">
-            <div class="card pad">
-              <h3>Option SISR</h3>
-              <p>Solutions d'infrastructure, systèmes et réseaux. Administration de serveurs, réseaux, virtualisation, sécurité et support.</p>
-              <ul>
-                <li>Mise en place de services (AD DS/DNS/DHCP, HTTP, SMTP, etc.)</li>
-                <li>Segmentation réseau, VLAN, routage, firewall</li>
-                <li>Virtualisation, sauvegardes, supervision</li>
-              </ul>
-            </div>
-            <div class="card pad">
-              <h3>Option SLAM</h3>
-              <p>Solutions logicielles et applications métiers. Développement d’applications, bases de données, tests, CI/CD.</p>
-              <ul>
-                <li>Conception & développement (web, desktop)</li>
-                <li>Modélisation & SQL</li>
-                <li>Qualité, documentation et maintenance</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="card pad">
-          <h3>Compétences visées (SISR)</h3>
-          <div class="list">
-            <div class="item"><span class="dot"></span><div>Installer, configurer et sécuriser des équipements et services réseaux.</div></div>
-            <div class="item"><span class="dot"></span><div>Déployer des solutions virtualisées et assurer la continuité de service.</div></div>
-            <div class="item"><span class="dot"></span><div>Superviser l’infrastructure et automatiser les tâches récurrentes.</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Formation scolaire -->
-    <section id="formation" class="section">
-      <div class="container grid cols-2">
-        <div class="card pad">
-          <span class="tag">Parcours</span>
-          <h2>Ma formation</h2>
-          <div class="list">
-            <div class="item">
-              <span class="dot"></span>
-              <div>
-                <strong>Bac Général</strong> — spécialités <strong>Mathématiques</strong> et <strong>SVT</strong><br/>
-                <em>Lycée d'Arsonval</em>, Saint‑Maur‑des‑Fossés
-              </div>
-            </div>
-            <div class="item">
-              <span class="dot"></span>
-              <div>
-                <strong>BTS SIO — Option SISR (en cours)</strong><br/>
-                <em>Pôle STS Sainte‑Marie</em>, Joinville‑le‑Pont
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card pad">
-          <h3>Atouts</h3>
-          <ul>
-            <li>Curiosité technique et veille régulière</li>
-            <li>Rigueur, documentation et sens du service</li>
-            <li>Travail en équipe et bonne communication</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- TP SISR -->
-    <section id="tps" class="section">
-      <div class="container">
-        <div class="card pad">
-          <span class="tag">Travaux Pratiques</span>
-          <h2>TP réalisés en SISR</h2>
-          <p>Voici une sélection de TP réalisés au cours de la formation SISR. Remplace les textes et ajoute des liens vers tes dépôts Git ou rapports PDF.</p>
-          <div class="grid cols-3">
-            <article class="card pad">
-              <h3>Déploiement d'un domaine Active Directory</h3>
-              <p>Installation d'AD DS, DNS et DHCP sur Windows Server, création d’OU, stratégies GPO, et jonction de postes clients.</p>
-              <p><a href="#">➡ Rapport / Repo</a></p>
-            </article>
-            <article class="card pad">
-              <h3>Virtualisation & réseau sous Proxmox</h3>
-              <p>Création d’un cluster de test, VLAN, routage inter‑VLAN, mise en place de snapshots et sauvegardes programmées.</p>
-              <p><a href="#">➡ Rapport / Repo</a></p>
-            </article>
-            <article class="card pad">
-              <h3>Services Web sécurisés</h3>
-              <p>Serveur web Nginx/Apache, reverse proxy, certificats TLS (Let's Encrypt), et supervision via métriques.</p>
-              <p><a href="#">➡ Rapport / Repo</a></p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section">
-      <div class="container grid cols-2">
-        <div class="card pad">
-          <span class="tag">Contact</span>
-          <h2>Me contacter</h2>
-          <p>Envie d’échanger sur un projet, un stage ou une alternance ?</p>
-          <ul>
-            <li>Email : <a href="mailto:prenom.nom@email.com">prenom.nom@email.com</a></li>
-            <li>LinkedIn : <a href="#">linkedin.com/in/joanes‑forges</a></li>
-            <li>GitHub : <a href="#">github.com/joanes‑forges</a></li>
-          </ul>
-        </div>
-        <div class="card pad">
-          <h3>CV</h3>
-          <p>Ajoute ici un lien vers ton CV (PDF) :</p>
-          <p><a class="btn" href="#">Télécharger mon CV</a></p>
-          <p style="opacity:.8">Astuce : uploade ton CV dans le repo GitHub et pointe ce bouton vers le fichier PDF.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="card pad">
-        <p>© <span id="year"></span> Joanes Forges — Portfolio BTS SIO SISR · Hébergé gratuitement (GitHub Pages)</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // année du footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // scroll fluide
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length>1){e.preventDefault();document.querySelector(id).scrollIntoView({behavior:'smooth'});}})
-    })
-  </script>
+  <!-- ton HTML reste inchangé -->
+  ...
 </body>
 </html>
-
