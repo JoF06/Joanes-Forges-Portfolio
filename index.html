@@ -3,235 +3,626 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio de Joanes Forges, étudiant en BTS SIO option SISR, passionné par les réseaux et la cybersécurité.">
   <title>Portfolio - Joanes Forges</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Librairie d'animations AOS -->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- Reset & Base --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* Style pour le flux RSS */
+.rss-item {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(79, 195, 247, 0.2);
+  margin-bottom: 0.5rem;
+}
+.rss-item:last-child {
+  border-bottom: none;
+}
+.rss-item h4 {
+  color: #4fc3f7;
+  margin-bottom: 0.3rem;
+}
+.rss-item a {
+  color: #4fc3f7;
+}
+.rss-date {
+  font-size: 0.8rem;
+  color: #b0bec5;
+  font-style: italic;
+}
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0a1a2f;
+      color: #e8f2f5;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* --- Typography --- */
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+    p {
+      font-weight: 300;
+    }
+    a {
+      text-decoration: none;
+      color: #4fc3f7;
+    }
+    strong {
+      color: #4fc3f7;
+      font-weight: 600;
+    }
+
+    /* --- Navigation --- */
+    nav {
+      background: rgba(0, 0, 0, 0.9);
+      border-bottom: 1px solid #4fc3f7;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 0.8rem 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      gap: 2rem;
+    }
+    nav a {
+      color: #e8f2f5;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+    }
+    nav a:hover {
+      color: #4fc3f7;
+      background: rgba(79, 195, 247, 0.1);
+    }
+
+    /* --- Hero Section --- */
+    #presentation {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 10%;
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .hero-title span {
+      display: inline-block;
+      animation: colorChange 0.2s infinite alternate, wave 2s ease-in-out infinite;
+      transform-origin: bottom;
+    }
+    @keyframes colorChange {
+      0% { color: #a5d8ff; }
+      25% { color: #7dd3fc; }
+      50% { color: #5dade2; }
+      75% { color: #3a96dd; }
+      100% { color: #a5d8ff; }
+    }
+    @keyframes wave {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-20px); }
+    }
+    .hero-title span:nth-child(1) { animation-delay: 0s; }
+    .hero-title span:nth-child(2) { animation-delay: 0.05s; }
+    .hero-title span:nth-child(3) { animation-delay: 0.1s; }
+    .hero-title span:nth-child(4) { animation-delay: 0.15s; }
+    .hero-title span:nth-child(5) { animation-delay: 0.2s; }
+    .hero-title span:nth-child(6) { animation-delay: 0.25s; }
+    .hero-title span:nth-child(7) { color: transparent; animation-delay: 0s; }
+    .hero-title span:nth-child(8) { animation-delay: 0.3s; }
+    .hero-title span:nth-child(9) { animation-delay: 0.35s; }
+    .hero-title span:nth-child(10) { animation-delay: 0.4s; }
+    .hero-title span:nth-child(11) { animation-delay: 0.45s; }
+    .hero-title span:nth-child(12) { animation-delay: 0.5s; }
+    .hero-title span:nth-child(13) { animation-delay: 0.55s; }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: #4fc3f7;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+      max-width: 600px;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Sections --- */
+    section {
+      min-height: 100vh;
+      padding: 6rem 10% 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+      font-size: 2.2rem;
+      color: #4fc3f7;
+    }
+    section h2::after {
+      content: "";
+      display: block;
+      margin: 0.5rem auto;
+      width: 80px;
+      height: 4px;
+      background: #4fc3f7;
+      border-radius: 2px;
+    }
+    section p {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #e8f2f5;
+    }
+
+    /* --- Projects Section --- */
+    #projets ul, #stages ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem auto;
+      padding: 0;
+    }
+    #projets li, #stages li {
+      background: rgba(10, 26, 47, 0.7);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(79, 195, 247, 0.2);
+      text-align: left;
+      transition: transform 0.3s ease;
+    }
+    #projets li:hover, #stages li:hover {
+      transform: translateY(-5px);
+    }
+    #projets li h3, #stages li h3 {
+      color: #4fc3f7;
+      margin-bottom: 0.8rem;
+    }
+    #projets li a, #stages li a {
+      color: #4fc3f7;
+      text-decoration: underline;
+    }
+    .project-preview {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+    #projets li:hover .project-preview {
+      transform: scale(1.05);
+    }
+
+    /* --- Mon Parcours Section --- */
+    #formation {
+      padding: 4rem 10%;
+    }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      max-width: 800px;
+      margin: 2rem auto;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(79, 195, 247, 0.3);
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: flex;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #4fc3f7;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    .timeline-content {
+      background: rgba(10, 26, 47, 0.7);
+      padding: 1.5rem;
+      border-radius: 8px;
+      width: 45%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(79, 195, 247, 0.2);
+    }
+    .timeline-content.right {
+      margin-left: auto;
+    }
+    .timeline-content h3 {
+      color: #4fc3f7;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-content p {
+      text-align: left;
+      margin: 0;
+      color: #e8f2f5;
+    }
+    @media (max-width: 768px) {
+      .timeline-item {
+        flex-direction: column;
+      }
+      .timeline-content {
+        width: 90%;
+        margin-left: 0 !important;
+      }
+      .timeline::before {
+        left: 10px;
+      }
+      .timeline-item::before {
+        left: 10px;
+        transform: none;
+      }
+    }
+
+    /* --- Stages Section --- */
+    #stages {
+      padding: 6rem 10% 4rem;
+    }
+
+    /* --- Veille Section --- */
+    #veille {
+      padding: 6rem 10% 4rem;
+      text-align: center;
+    }
+    .rss-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: rgba(10, 26, 47, 0.7);
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid rgba(79, 195, 247, 0.2);
+    }
+    .rss-feed {
+      text-align: left;
+      margin-top: 1rem;
+    }
+    .rss-item {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(79, 195, 247, 0.2);
+    }
+    .rss-item:last-child {
+      border-bottom: none;
+    }
+    .rss-item h3 {
+      color: #4fc3f7;
+      margin-bottom: 0.5rem;
+    }
+    .rss-item a {
+      color: #4fc3f7;
+    }
+
+    /* --- Contact Form --- */
+    form {
+      max-width: 500px;
+      margin: 2rem auto;
+      display: grid;
+      gap: 1.2rem;
+      width: 100%;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid rgba(79, 195, 247, 0.3);
+      background: rgba(10, 26, 47, 0.7);
+      color: #e8f2f5;
+      font-size: 1rem;
+      transition: border 0.3s ease;
+    }
+    input:focus, textarea:focus {
+      border-color: #4fc3f7;
+      outline: none;
+    }
+    button {
+      background: #1a237e;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: #283593;
+      transform: translateY(-2px);
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.9);
+      color: #b0bec5;
+      margin-top: 0;
+      border-top: 1px solid #4fc3f7;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      section {
+        padding: 4rem 5% 2rem;
+      }
+      #projets ul, #stages ul {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<style>
-.rotate-hor-center {
-  animation: rotate-hor-center 4s linear infinite;
-}
-
-@keyframes rotate-hor-center {
-  0% {
-    transform: rotateX(0deg);
-  }
-  17% {
-    transform: rotateX(360deg);
-  }
-  100% {
-    transform: rotateX(360deg); /* reste immobile pendant 2s */
-  }
-}
-
-
-  @font-face {
-    font-family: 'Cormorant';
-    src: url('fonts/CormorantGaramond-Medium.ttf') format('truetype');
-  }
-  @font-face {
-    font-family: 'Cinzel';
-    src: url('fonts/Cinzel-VariableFont_wght.ttf') format('truetype');
-  }
-
-
-  html{
-    scroll-behavior: smooth;
-    max-width: 70em;
-    margin: auto;
-    display: flex;
-    align-items: center;
-  }
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-  background: #c5cfe4; /* Bleu nuit profond */
-  color: #232946;
-  }
-
-  header {
-      background: rgb(69, 80, 127);
-    color: #ffffff;
-    text-align: center;
-    border-radius: 0.5em;
-    padding-bottom: 1rem;
-    animation: fadeInDown 1s ease;
-  }
-
-  nav {
-  background: #31363d;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-  }
-  nav li {
-    margin: 0 3em;
-    font-size: large;
-  }
-  nav a {
-     color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-    position: relative;
-    transition: color 0.3s ease;
-  }
-  nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0%;
-    height: 2px;
-  background: #ffffff;
-    transition: width 0.3s ease;
-  }
-  nav a:hover::after {
-    width: 100%;
-  }
-
-  .section {
-    padding-top: 1.5em;      
-    padding-bottom: 8.5em;      
-    padding-left: 5em;
-    padding-right: 5em;
-    max-width: 70em;
-    margin: 2rem auto;
-    background: #ffffffb5;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-height: 50vh;           
-    display: block;              /* Remplace flex pour aligner le contenu en haut */
-}
-
-  
-  .section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  }
-  .section h2 {
-    color: #16396f;
-  }
-
-  footer {
-    text-align: center;
-    padding: 1rem;
-    background: #3647a0;
-    color: #ffffff;
-    margin-top: 2rem;
-    animation: fadeInUp 1s ease;
-  }
-  .cormo {
-    font-family: 'Cormorant', serif;
-    font-size: 1.5em;
-  }
-  .cinzi {
-    font-family: 'Cinzel', serif;
-  }
-
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#presentation">Présentation</a></li>
-        <li><a href="#bts-sio">Le BTS SIO</a></li>
-        <li><a href="#formation">Ma Formation</a></li>
-        <li><a href="#projets">Projets</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <h1 class="rotate-hor-center cinzi">Portfolio - Joanes Forges</h1>
-    <p class="cormo">Étudiant en BTS SIO option SISR au Pôle STS Sainte Marie, Joinville-le-Pont</p>
+  <nav>
+    <ul>
+      <li><a href="#presentation">Présentation</a></li>
+      <li><a href="#bts-sio">BTS SIO</a></li>
+      <li><a href="#formation">Mon Parcours</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#stages">Stages</a></li>
+      <li><a href="#veille">Veille</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <header id="presentation">
+    <h1 class="hero-title">
+      <span>J</span><span>o</span><span>a</span><span>n</span><span>e</span><span>s</span>
+      <span> </span>
+      <span>F</span><span>o</span><span>r</span><span>g</span><span>e</span><span>s</span>
+    </h1>
+    <p class="hero-subtitle">
+      Étudiant en <strong>BTS SIO option SISR</strong> — Passionné de réseaux et cybersécurité
+    </p>
   </header>
-
   <main>
-    <section id="presentation" class="section" data-aos="zoom-in-right">
-      <h2>Qui suis-je ?</h2>
-      <p>
-        Je m'appelle <strong class="rotate-hor-center">Joanes Forges</strong>.  
-        Je suis actuellement en <strong>BTS SIO</strong>, option <strong>SISR</strong>, 
-        au <strong>Pôle STS Sainte Marie à Joinville-le-Pont</strong>.
-      </p>
-    </section>
-
-    <section id="bts-sio" class="section" data-aos="fade-right">
+    <section id="bts-sio" data-aos="fade-up">
       <h2>Le BTS SIO</h2>
-      <p>Le <strong>BTS SIO</strong> est une formation en informatique qui propose deux options :</p>
-      <ul>
-        <li><strong>Option SISR</strong> : Solutions d’infrastructure, systèmes et réseaux.  
-        On y apprend à gérer les réseaux, les serveurs, la cybersécurité et l'administration système.</li>
-        <li><strong>Option SLAM</strong> : Solutions logicielles et applications métiers.  
-        Cette option est orientée vers le développement d'applications et de logiciels.</li>
-      </ul>
-      <h3>Travaux pratiques réalisés en SISR :</h3>
-      <ul>
-        <li>Installation et configuration de serveurs Windows et Linux</li>
-        <li>Mise en place de machines virtuelles</li>
-        <li>Configuration de réseaux locaux et VLAN</li>
-        <li>Notions de cybersécurité et gestion des droits utilisateurs</li>
-      </ul>
-    </section>
-
-    <section id="formation" class="section" data-aos="fade-right">
-      <h2>Mon Parcours</h2>
       <p>
-        Avant d'intégrer le BTS SIO, j’ai obtenu un <strong>Baccalauréat Général</strong> 
-        avec spécialités <strong>Mathématiques</strong> et <strong>SVT</strong> 
-        au <strong>Lycée d'Arsonval à Saint-Maur-des-Fossés</strong>.
+        Le <strong>BTS Services Informatiques aux Organisations</strong> (BTS SIO) est un diplôme national de niveau Bac+2 qui forme des professionnels de l'informatique.
+        Cette formation permet d'acquérir des compétences techniques et opérationnelles pour travailler dans les services informatiques des entreprises,
+        les sociétés de conseil, ou en tant qu'indépendant.
       </p>
+      <p>
+        Le BTS SIO propose deux spécialités distinctes :
+      </p>
+      <ul>
+        <li>
+          <h3>Option SISR (Solutions d'Infrastructure, Systèmes et Réseaux)</h3>
+          <p>
+            Cette spécialité forme des administrateurs réseau et système.
+            Les compétences acquises incluent :
+          </p>
+          <ul style="padding-left: 1.2rem; margin-top: 0.8rem;">
+            <li>Administration des systèmes (Windows, Linux).</li>
+            <li>Gestion des réseaux (Cisco, routage, commutateurs).</li>
+            <li>Virtualisation et cloud computing.</li>
+            <li>Cybersécurité et protection des données.</li>
+            <li>Supervision et maintenance des infrastructures.</li>
+          </ul>
+          <p style="margin-top: 0.8rem; font-style: italic;">
+            Idéal pour ceux qui aiment le concret, le matériel, et la résolution de problèmes techniques.
+          </p>
+        </li>
+        <li>
+          <h3>Option SLAM (Solutions Logicielles et Applications Métiers)</h3>
+          <p>
+            Cette spécialité forme des développeurs et analystes programmeurs.
+            Les compétences acquises incluent :
+          </p>
+          <ul style="padding-left: 1.2rem; margin-top: 0.8rem;">
+            <li>Développement web (HTML, CSS, JavaScript, PHP).</li>
+            <li>Développement d'applications (Java, C#, Python).</li>
+            <li>Gestion des bases de données (SQL, NoSQL).</li>
+            <li>Conception d'interfaces utilisateur.</li>
+            <li>Méthodologies de gestion de projet (Agile, Scrum).</li>
+          </ul>
+          <p style="margin-top: 0.8rem; font-style: italic;">
+            Parfait pour les passionnés de code, de logique, et de création d'outils numériques.
+          </p>
+        </li>
+      </ul>
     </section>
-
-    <section id="projets" class="section" data-aos="fade-right">
+    <section id="formation" data-aos="fade-up">
+      <h2>Mon Parcours</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>2021 - 2022</h3>
+            <p><strong>Baccalauréat Général</strong><br>
+               Lycée d'Arsonval, Saint-Maur-des-Fossés<br>
+               Spécialités : Mathématiques, SVT<br>
+               Mention : Bien
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content right">
+            <h3>2022 - 2024</h3>
+            <p><strong>BTS SIO option SISR</strong><br>
+               Lycée [Nom du lycée], [Ville]<br>
+               Spécialisation en administration système, réseaux et cybersécurité.<br>
+               Projets réalisés : Déploiement de serveurs, gestion de parc informatique, sécurisation de réseaux.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>2024 - Présent</h3>
+            <p><strong>Alternance en Administration Réseau</strong><br>
+               Entreprise : [Nom de l'entreprise], [Ville]<br>
+               Missions : Maintenance des infrastructures, support utilisateur, déploiement de solutions de sécurité.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="projets" data-aos="fade-up">
       <h2>Mes Projets</h2>
       <ul>
         <li>
-          <strong>Gestionnaire de Parc Informatique</strong> – Application web pour suivre le matériel et les interventions.
+          <h3>Gestionnaire de Parc Informatique</h3>
+          <p>Application web pour suivre le matériel et les interventions.</p>
         </li>
         <li>
-          <strong>Déploiement d’un serveur Linux</strong> – Installation, configuration et sécurisation d’un serveur pour un usage pédagogique.
+          <h3>Déploiement d'un serveur Linux</h3>
+          <p>Installation, configuration et sécurisation d'un serveur pédagogique.</p>
         </li>
         <li>
-          <strong>Site vitrine pour une association</strong> – Création d’un site web responsive avec HTML, CSS et un peu de JavaScript.
+          <h3>Site vitrine pour l'association Championnes d'Échecs de Champigny</h3>
+          <img src="https://via.placeholder.com/400x200/4fc3f7/ffffff?text=Championnes+d%27%C3%89checs" alt="Aperçu du site Championnes d'Échecs" class="project-preview">
+          <p>Création d'un site web pour promouvoir l'association et ses activités. <a href="https://championnes.page.gd/" target="_blank">Voir le site</a>.</p>
         </li>
       </ul>
     </section>
+    <section id="stages" data-aos="fade-up">
+      <h2>Mes Stages</h2>
+      <ul>
+        <li>
+          <h3>Stage chez Ethiciel - Mai 2025</h3>
+          <p>Stage réalisé au sein de l'association Ethiciel, spécialisée dans l'éthique numérique et l'inclusion.</p>
+          <h4>Missions réalisées :</h4>
+          <ul style="padding-left: 1.2rem; margin-top: 0.8rem;">
+            <li>Refonte complète du site web de l'association à l'aide de <strong>Zola</strong> (générateur de site statique en Rust).</li>
+            <li>Mise en ligne du site sur un hébergement adapté.</li>
+            <li>Utilisation de <strong>GitHub</strong> pour la sauvegarde et le versionnage du code.</li>
+            <li>Optimisation des performances et de l'accessibilité.</li>
+          </ul>
+          <p style="margin-top: 0.8rem; font-style: italic;">
+            Une expérience enrichissante qui m'a permis de découvrir Zola et d'approfondir mes compétences en gestion de projet web.
+          </p>
+        </li>
+      </ul>
+    </section>
+    <section id="veille" data-aos="fade-up">
+      <div class="rss-container">
+  <h3>Flux RSS - Reality</h3>
+  <div id="rss-feed-reality" class="rss-feed">
+    <p>Chargement des actualités...</p>
+  </div>
+</div>
 
-    <section id="contact" class="section" data-aos="fade-right">
+<script>
+  // Fonction pour parser le flux RSS
+  async function fetchRSS() {
+    try {
+      const proxyUrl = 'https://api.allorigins.win/get?url=';
+      const targetUrl = encodeURIComponent('https://reality.fr/feed/');
+      const response = await fetch(proxyUrl + targetUrl);
+      const data = await response.json();
+      const xml = data.contents;
+
+      // Parse le XML
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xml, "text/xml");
+      const items = xmlDoc.querySelectorAll("item");
+
+      // Affiche les 5 premiers articles
+      const feedContainer = document.getElementById('rss-feed-reality');
+      feedContainer.innerHTML = '';
+
+      items.forEach((item, index) => {
+        if (index < 5) {
+          const title = item.querySelector("title").textContent;
+          const link = item.querySelector("link").textContent;
+          const pubDate = item.querySelector("pubDate").textContent;
+
+          feedContainer.innerHTML += `
+            <div class="rss-item">
+              <h4><a href="${link}" target="_blank">${title}</a></h4>
+              <p class="rss-date">${new Date(pubDate).toLocaleDateString('fr-FR')}</p>
+            </div>
+          `;
+        }
+      });
+    } catch (error) {
+      console.error("Erreur lors de la récupération du flux RSS :", error);
+      document.getElementById('rss-feed-reality').innerHTML = `
+        <p>Impossible de charger le flux RSS. <a href="https://reality.fr" target="_blank">Visitez Reality directement</a>.</p>
+      `;
+    }
+  }
+
+  // Appel de la fonction au chargement de la page
+  document.addEventListener('DOMContentLoaded', fetchRSS);
+</script>
+
+    </section>
+    <section id="contact" data-aos="fade-up">
       <h2>Contact</h2>
-      <p>Tu peux me contacter par mail à <a href="mailto:joanes.forges@email.com">joanes.forges@email.com</a> ou via le formulaire ci-dessous :</p>
+      <p>
+        Tu peux me contacter par mail à <a href="mailto:joanes.forges@email.com">joanes.forges@email.com</a>
+        ou via le formulaire ci-dessous :
+      </p>
       <form>
-        <label for="nom">Nom :</label><br>
-        <input type="text" id="nom" name="nom" required><br>
-        <label for="email">Email :</label><br>
-        <input type="email" id="email" name="email" required><br>
-        <label for="message">Message :</label><br>
-        <textarea id="message" name="message" rows="4" required></textarea><br>
+        <input type="text" id="nom" name="nom" placeholder="Nom" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <textarea id="message" name="message" rows="4" placeholder="Votre message..." required></textarea>
         <button type="submit">Envoyer</button>
       </form>
     </section>
   </main>
-  </main>
-
   <footer>
     <p>© 2025 - Portfolio de Joanes Forges</p>
   </footer>
-
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init({
