@@ -16,27 +16,68 @@
       padding: 0;
       box-sizing: border-box;
     }
-    /* Style pour le flux RSS */
-.rss-item {
-  padding: 1rem;
-  border-bottom: 1px solid rgba(79, 195, 247, 0.2);
-  margin-bottom: 0.5rem;
+    /* Style pour le conteneur RSS */
+.rss-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: rgba(10, 26, 47, 0.7);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(79, 195, 247, 0.2);
 }
+
+.rss-feed {
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.rss-item {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(79, 195, 247, 0.2);
+}
+
 .rss-item:last-child {
   border-bottom: none;
 }
+
 .rss-item h4 {
   color: #4fc3f7;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
-.rss-item a {
+
+.rss-item h4 a {
   color: #4fc3f7;
+  transition: color 0.3s ease;
 }
+
+.rss-item h4 a:hover {
+  color: #a5d8ff;
+}
+
 .rss-date {
   font-size: 0.8rem;
   color: #b0bec5;
   font-style: italic;
+  margin-bottom: 0.5rem;
 }
+
+.rss-description {
+  color: #e8f2f5;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-style: italic;
+}
+
+.error-message a {
+  color: #4fc3f7;
+}
+
+
 
     html {
       scroll-behavior: smooth;
@@ -317,32 +358,7 @@
       padding: 6rem 10% 4rem;
       text-align: center;
     }
-    .rss-container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: rgba(10, 26, 47, 0.7);
-      padding: 2rem;
-      border-radius: 8px;
-      border: 1px solid rgba(79, 195, 247, 0.2);
-    }
-    .rss-feed {
-      text-align: left;
-      margin-top: 1rem;
-    }
-    .rss-item {
-      padding: 1rem;
-      border-bottom: 1px solid rgba(79, 195, 247, 0.2);
-    }
-    .rss-item:last-child {
-      border-bottom: none;
-    }
-    .rss-item h3 {
-      color: #4fc3f7;
-      margin-bottom: 0.5rem;
-    }
-    .rss-item a {
-      color: #4fc3f7;
-    }
+    
 
     /* --- Contact Form --- */
     form {
@@ -553,59 +569,87 @@
       </ul>
     </section>
     <section id="veille" data-aos="fade-up">
-      <div class="rss-container">
-  <h3>Flux RSS - Reality</h3>
-  <div id="rss-feed-reality" class="rss-feed">
-    <p>Chargement des actualités...</p>
+  <h2>Veille Technologique</h2>
+  <div class="rss-container">
+    <h3>Dernières actualités - Augmented Reality News</h3>
+    <div id="rss-feed-ar" class="rss-feed">
+      <p>Chargement des actualités...</p>
+    </div>
   </div>
-</div>
+</section>
 
 <script>
-  // Fonction pour parser le flux RSS
-  async function fetchRSS() {
-    try {
-      const proxyUrl = 'https://api.allorigins.win/get?url=';
-      const targetUrl = encodeURIComponent('https://reality.fr/feed/');
-      const response = await fetch(proxyUrl + targetUrl);
-      const data = await response.json();
-      const xml = data.contents;
+// Fonction pour parser et afficher le flux RSS
+async function fetchAndDisplayARRSS() {
+  try {
+    // Utilisation d'un proxy CORS pour contourner les restrictions
+    const proxyUrl = 'https://api.allorigins.win/get?url=';
+    const targetUrl = encodeURIComponent('https://augmented.reality.news/rss.xml');
+    const response = await fetch(proxyUrl + targetUrl);
 
-      // Parse le XML
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(xml, "text/xml");
-      const items = xmlDoc.querySelectorAll("item");
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP! statut: ${response.status}`);
+    }
 
-      // Affiche les 5 premiers articles
-      const feedContainer = document.getElementById('rss-feed-reality');
-      feedContainer.innerHTML = '';
+    const data = await response.json();
 
-      items.forEach((item, index) => {
-        if (index < 5) {
-          const title = item.querySelector("title").textContent;
-          const link = item.querySelector("link").textContent;
-          const pubDate = item.querySelector("pubDate").textContent;
+    if (!data.contents) {
+      throw new Error("Impossible de récupérer le contenu du flux RSS.");
+    }
 
-          feedContainer.innerHTML += `
-            <div class="rss-item">
-              <h4><a href="${link}" target="_blank">${title}</a></h4>
-              <p class="rss-date">${new Date(pubDate).toLocaleDateString('fr-FR')}</p>
-            </div>
-          `;
-        }
-      });
-    } catch (error) {
-      console.error("Erreur lors de la récupération du flux RSS :", error);
-      document.getElementById('rss-feed-reality').innerHTML = `
-        <p>Impossible de charger le flux RSS. <a href="https://reality.fr" target="_blank">Visitez Reality directement</a>.</p>
+    // Parse le XML
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+    const items = xmlDoc.querySelectorAll("item");
+
+    // Affiche les 5 premiers articles
+    const feedContainer = document.getElementById('rss-feed-ar');
+    feedContainer.innerHTML = '';
+
+    if (items.length === 0) {
+      feedContainer.innerHTML = '<p>Aucun article trouvé dans le flux RSS.</p>';
+      return;
+    }
+
+    // Limite à 5 articles maximum
+    const maxItems = Math.min(items.length, 5);
+
+    for (let i = 0; i < maxItems; i++) {
+      const item = items[i];
+      const title = item.querySelector("title")?.textContent || "Sans titre";
+      const link = item.querySelector("link")?.textContent || "#";
+      const pubDate = item.querySelector("pubDate")?.textContent || "";
+      const description = item.querySelector("description")?.textContent || "Pas de description disponible.";
+
+      // Nettoyage de la description (suppression des balises HTML et des CDATA)
+      let cleanDescription = description.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '');
+      cleanDescription = cleanDescription.replace(/<[^>]*>/g, '').substring(0, 200) + '...';
+
+      feedContainer.innerHTML += `
+        <div class="rss-item">
+          <h4><a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a></h4>
+          <p class="rss-date">${pubDate ? new Date(pubDate).toLocaleDateString('fr-FR') : "Date inconnue"}</p>
+          <p class="rss-description">${cleanDescription}</p>
+        </div>
       `;
     }
+  } catch (error) {
+    console.error("Erreur lors de la récupération du flux RSS :", error);
+    document.getElementById('rss-feed-ar').innerHTML = `
+      <p class="error-message">
+        Impossible de charger le flux RSS.
+        <a href="https://augmented.reality.news" target="_blank" rel="noopener noreferrer">Visitez Augmented Reality News directement</a>.
+      </p>
+    `;
   }
+}
 
-  // Appel de la fonction au chargement de la page
-  document.addEventListener('DOMContentLoaded', fetchRSS);
+// Appel de la fonction au chargement de la page
+document.addEventListener('DOMContentLoaded', fetchAndDisplayARRSS);
 </script>
 
-    </section>
+
+
     <section id="contact" data-aos="fade-up">
       <h2>Contact</h2>
       <p>
