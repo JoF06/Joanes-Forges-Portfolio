@@ -477,6 +477,14 @@
   bottom: -14px;
   border-radius: 0 0 12px 12px;
 }
+.scroll-frame {
+  animation: glowPulse 2.5s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { box-shadow: 0 0 10px rgba(79,195,247,0.4); }
+  to   { box-shadow: 0 0 20px rgba(79,195,247,1); }
+}
 
   </style>
 </head>
@@ -734,4 +742,5 @@ document.addEventListener('DOMContentLoaded', fetchAndDisplayARRSS);
   </script>
 </body>
 </html>
+
 
