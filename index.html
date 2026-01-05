@@ -425,6 +425,63 @@
         grid-template-columns: 1fr;
       }
     }
+    /* ===== CADRE GLOBAL DU SITE ===== */
+.page-frame {
+  position: fixed;
+  inset: 12px; /* distance du cadre par rapport au bord */
+  border: 2px solid rgba(79, 195, 247, 0.6);
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 9999;
+
+  box-shadow:
+    0 0 20px rgba(79, 195, 247, 0.4),
+    inset 0 0 25px rgba(79, 195, 247, 0.25);
+}
+
+/* Coins futuristes */
+.page-frame::before,
+.page-frame::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #4fc3f7;
+}
+
+.page-frame::before {
+  top: -3px;
+  left: -3px;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 16px 0 0 0;
+}
+
+.page-frame::after {
+  bottom: -3px;
+  right: -3px;
+  border-left: none;
+  border-top: none;
+  border-radius: 0 0 16px 0;
+}
+
+/* Animation légère (optionnel mais très classe) */
+.page-frame {
+  animation: frameGlow 3s infinite alternate;
+}
+
+@keyframes frameGlow {
+  from {
+    box-shadow:
+      0 0 15px rgba(79,195,247,0.4),
+      inset 0 0 20px rgba(79,195,247,0.25);
+  }
+  to {
+    box-shadow:
+      0 0 30px rgba(79,195,247,0.9),
+      inset 0 0 30px rgba(79,195,247,0.5);
+  }
+}
 
   </style>
 </head>
@@ -679,6 +736,7 @@ document.addEventListener('DOMContentLoaded', fetchAndDisplayARRSS);
   </script>
 </body>
 </html>
+
 
 
 
