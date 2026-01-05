@@ -425,9 +425,66 @@
         grid-template-columns: 1fr;
       }
     }
+    /* === Scrollbar stylisée === */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 26, 47, 0.9);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4fc3f7, #1a237e);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(79,195,247,0.8);
+}
+
+/* === Cadre fixe autour du scroll === */
+.scroll-frame {
+  position: fixed;
+  right: 4px;
+  top: 70px;
+  width: 20px;
+  height: calc(100vh - 140px);
+  pointer-events: none;
+  z-index: 9999;
+  border: 2px solid rgba(79,195,247,0.6);
+  border-radius: 14px;
+  box-shadow:
+    0 0 10px rgba(79,195,247,0.5),
+    inset 0 0 15px rgba(79,195,247,0.4);
+}
+
+/* Décoration haut */
+.scroll-frame-top,
+.scroll-frame-bottom {
+  position: absolute;
+  left: -6px;
+  width: 32px;
+  height: 20px;
+  background: rgba(79,195,247,0.15);
+  border: 2px solid #4fc3f7;
+  box-shadow: 0 0 12px rgba(79,195,247,0.8);
+}
+
+.scroll-frame-top {
+  top: -14px;
+  border-radius: 12px 12px 0 0;
+}
+
+.scroll-frame-bottom {
+  bottom: -14px;
+  border-radius: 0 0 12px 12px;
+}
+
   </style>
 </head>
 <body>
+  <div class="scroll-frame">
+  <div class="scroll-frame-top"></div>
+  <div class="scroll-frame-bottom"></div>
+</div>
   <nav>
     <ul>
       <li><a href="#presentation">Présentation</a></li>
@@ -677,3 +734,4 @@ document.addEventListener('DOMContentLoaded', fetchAndDisplayARRSS);
   </script>
 </body>
 </html>
+
