@@ -428,7 +428,7 @@
     /* ===== CADRE GLOBAL DU SITE ===== */
 .page-frame {
   position: fixed;
-  inset: 12px; /* distance du cadre par rapport au bord */
+  inset: 0.2em; /* distance du cadre par rapport au bord */
   border: 2px solid rgba(79, 195, 247, 0.6);
   border-radius: 18px;
   pointer-events: none;
@@ -467,7 +467,7 @@
 
 /* Animation légère (optionnel mais très classe) */
 .page-frame {
-  animation: frameGlow 3s infinite alternate;
+  animation: frameGlow 2s infinite alternate;
 }
 
 @keyframes frameGlow {
@@ -501,11 +501,11 @@
   <header id="presentation">
     <h1 class="hero-title">
       <span>J</span><span>o</span><span>a</span><span>n</span><span>e</span><span>s</span>
-      <span> </span>
+      <span>  &nbsp</span>
       <span>F</span><span>o</span><span>r</span><span>g</span><span>e</span><span>s</span>
     </h1>
     <p class="hero-subtitle">
-      Étudiant en <strong>BTS SIO option SISR</strong> — Passionné de réseaux et cybersécurité
+      Étudiant en <strong>BTS SIO option SISR</strong> — Réseaux et cybersécurité
     </p>
   </header>
   <main>
@@ -616,7 +616,7 @@
           <p>Stage réalisé au sein de l'association Ethiciel, spécialisée dans l'éthique numérique et l'inclusion.</p>
           <h4>Missions réalisées :</h4>
           <ul style="padding-left: 1.2rem; margin-top: 0.8rem;">
-            <li>Refonte complète du site web de l'association à l'aide de <strong>Zola</strong> (générateur de site statique en Rust).</li>
+            <li>Refonte complète du site web de l'association à l'aide de <strong><a href="https://www.getzola.org/">Zola</a></strong> (générateur de site statique en Rust).</li>
             <li>Mise en ligne du site sur un hébergement adapté.</li>
             <li>Utilisation de <strong>GitHub</strong> pour la sauvegarde et le versionnage du code.</li>
             <li>Optimisation des performances et de l'accessibilité.</li>
@@ -712,7 +712,7 @@ document.addEventListener('DOMContentLoaded', fetchAndDisplayARRSS);
     <section id="contact" data-aos="fade-up">
       <h2>Contact</h2>
       <p>
-        Tu peux me contacter par mail à <a href="mailto:joanes.forges@email.com">joanes.forges@email.com</a>
+        Tu peux me contacter par mail à <a href="mailto:joanesforges@gmail.com">joanesforges@gmail.com</a>
         ou via le formulaire ci-dessous :
       </p>
       <form>
@@ -736,7 +736,6 @@ document.addEventListener('DOMContentLoaded', fetchAndDisplayARRSS);
   </script>
 </body>
 </html>
-
 
 
 
