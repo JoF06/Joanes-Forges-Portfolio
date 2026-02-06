@@ -6,28 +6,24 @@
   <meta name="description" content="Portfolio de Joanes Forges, étudiant en BTS SIO option SISR.">
   <title>Portfolio | Joanes Forges</title>
   
-  <!-- CSS Animation Library -->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Particles.js -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
   <style>
     :root {
       /* Palette éclaircie */
-      --bg-color: #1e293b; /* Bleu ardoise foncé au lieu de noir */
+      --bg-color: #1e293b; 
       --primary: #0ea5e9; /* Sky Blue */
       --secondary: #6366f1; /* Indigo */
       --accent: #f43f5e; /* Rose/Rouge */
-      --glass-bg: rgba(30, 41, 59, 0.65); /* Plus de transparence */
+      --glass-bg: rgba(30, 41, 59, 0.65);
       --glass-border: rgba(255, 255, 255, 0.15);
       --text-main: #f8fafc;
-      --text-muted: #cbd5e1; /* Gris plus clair pour meilleure lecture */
+      --text-muted: #cbd5e1;
     }
 
     /* --- Reset & Base --- */
@@ -51,7 +47,7 @@
       position: relative;
     }
 
-    /* --- Particles Container --- */
+    /* --- Particles Container (FOND PLUS CLAIR) --- */
     #particles-js {
       position: fixed;
       width: 100%;
@@ -59,7 +55,8 @@
       top: 0;
       left: 0;
       z-index: -1;
-      background: linear-gradient(to bottom, #1e293b, #0f172a); /* Dégradé subtil */
+      /* Changement ici : Dégradé plus lumineux (bleu nuit -> bleu ardoise moyen) */
+      background: linear-gradient(to bottom, #334155, #1e293b); 
     }
 
     /* --- Typography --- */
@@ -68,11 +65,10 @@
       line-height: 1.2;
     }
     
-    /* Centrage des titres H2 */
     h2 {
       font-size: 2.5rem;
       margin-bottom: 3rem;
-      text-align: center; /* Centré explicitement */
+      text-align: center;
       width: 100%;
       background: linear-gradient(to right, var(--primary), var(--secondary));
       -webkit-background-clip: text;
@@ -81,14 +77,13 @@
       display: block;
     }
     
-    /* Petite ligne décorative sous les titres */
     h2::after {
       content: '';
       display: block;
       width: 60px;
       height: 4px;
       background: var(--primary);
-      margin: 10px auto 0; /* Centré avec auto */
+      margin: 10px auto 0;
       border-radius: 2px;
     }
 
@@ -96,13 +91,13 @@
     p { color: var(--text-muted); font-size: 1.1rem; }
     strong { color: var(--primary); font-weight: 600; }
 
-    /* --- Navigation (Floating Pill) --- */
+    /* --- Navigation (Floating Pill & Arrow) --- */
     nav {
       position: fixed;
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(30, 41, 59, 0.9);
+      background: rgba(30, 41, 59, 0.95); /* Un peu plus opaque pour le contraste */
       backdrop-filter: blur(12px);
       padding: 0.8rem 2rem;
       border-radius: 50px;
@@ -122,31 +117,49 @@
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--text-muted);
+      position: relative; /* Pour positionner la flèche */
+      padding-bottom: 5px;
     }
-    nav a:hover, nav a.active {
+    
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    /* Style de l'indicateur actif (Flèche) */
+    nav a.active {
       color: var(--primary);
       text-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
+    }
+    
+    /* La flèche stylisée en CSS */
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; /* Position sous le texte */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0; 
+      height: 0; 
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid var(--primary); /* Triangle pointant vers le bas */
+      animation: floatArrow 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatArrow {
+      from { transform: translateX(-50%) translateY(0); }
+      to { transform: translateX(-50%) translateY(3px); }
     }
 
     /* --- Hero Section --- */
     #presentation {
-      min-height: 90vh; /* Un peu moins haut pour voir la suite */
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 0 20px;
-    }
-    .hero-tag {
-      background: rgba(14, 165, 233, 0.15);
-      color: var(--primary);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      border: 1px solid rgba(14, 165, 233, 0.3);
     }
     .hero-title {
       font-size: clamp(3rem, 8vw, 5rem);
@@ -165,15 +178,36 @@
     .cta-button {
       background: linear-gradient(90deg, var(--primary), var(--secondary));
       color: #fff;
-      padding: 1rem 2rem;
+      padding: 0.8rem 1.5rem;
       border-radius: 8px;
       font-weight: 700;
       box-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
       transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
     .cta-button:hover {
       transform: translateY(-2px);
       box-shadow: 0 0 30px rgba(14, 165, 233, 0.6);
+    }
+
+    /* Bouton secondaire (outline) pour le CV */
+    .cta-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cta-outline:hover {
+      background: rgba(14, 165, 233, 0.1);
+      transform: translateY(-2px);
     }
 
     /* --- Common Section Styles --- */
@@ -211,6 +245,7 @@
     .about-text {
       flex: 1 1 400px;
       font-size: 1.1rem;
+      text-align: left;
     }
 
     /* --- BTS SIO Grid --- */
@@ -363,28 +398,27 @@
         font-size: 0.75rem;
       }
       .hero-title { font-size: 2.5rem; }
+      nav a.active::after { bottom: 25px; transform: translateX(-50%) rotate(180deg); } /* Flèche inversée sur mobile car nav en bas */
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Particles -->
   <div id="particles-js"></div>
 
   <nav>
     <ul>
-      <li><a href="#presentation"><i class="fa-solid fa-house"></i></a></li>
-      <li><a href="#apropos">À Propos</a></li>
-      <li><a href="#bts-sio">BTS</a></li>
-      <li><a href="#formation">Parcours</a></li>
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#presentation" class="nav-link active"><i class="fa-solid fa-house"></i></a></li>
+      <li><a href="#apropos" class="nav-link">À Propos</a></li>
+      <li><a href="#bts-sio" class="nav-link">BTS</a></li>
+      <li><a href="#formation" class="nav-link">Parcours</a></li>
+      <li><a href="#projets" class="nav-link">Projets</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
   </nav>
 
   <header id="presentation">
     <div data-aos="fade-down">
-      <div class="hero-tag">Portfolio 2025</div>
       <h1 class="hero-title">
         <span>Joanes Forges</span>
       </h1>
@@ -397,7 +431,6 @@
   </header>
 
   <main>
-    <!-- Section À Propos -->
     <section id="apropos">
       <h2 data-aos="fade-up">À Propos</h2>
       <div class="glass-card about-content" data-aos="fade-up">
@@ -409,6 +442,13 @@
           <p>
             Curieux et rigoureux, je m'intéresse particulièrement à la <strong>cybersécurité</strong>, à la virtualisation et à l'administration système. Mon objectif est d'acquérir une expertise solide pour protéger et optimiser les systèmes d'information des entreprises.
           </p>
+          
+          <div style="margin-top: 1.5rem;">
+            <a href="CV Joanes Forges.pdf" class="cta-outline" target="_blank" title="Lien vers le CV PDF">
+              <i class="fa-solid fa-file-pdf"></i> Voir mon CV
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -437,31 +477,26 @@
     <section id="formation">
       <h2 data-aos="fade-up">Parcours & Stages</h2>
       <div class="timeline">
-        
-        <!-- Stage Ethiciel -->
-        <div class="timeline-item" data-aos="fade-right">
+        <div class="timeline-item" data-aos="fade-right" >
+          <span class="date-badge">10 Novembre - 19 Décembre 2025</span>
+          <h3>Stage Technique - Iro-o</h3>
+          <p>Première expérience professionnelle significative.</p>
+          <p style="margin-top:0.5rem; font-size: 0.95rem;">Assistance aux utilisateurs, cartographie de parc informatique et découverte des infrastructures réseaux en production</p>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
           <span class="date-badge">19 Mai - 26 Juin 2025</span>
           <h3>Stage chez Ethiciel</h3>
           <p>Association spécialisée dans l'éthique numérique.</p>
           <p style="margin-top:0.5rem; font-size: 0.95rem;">Refonte complète du site web avec <strong>Zola</strong> (Rust) et mise en place de processus de sauvegarde via GitHub.</p>
         </div>
 
-        <!-- Nouveau Stage -->
-        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
-          <span class="date-badge">10 Novembre - 19 Décembre</span>
-          <h3>Stage Technique - [Nom Entreprise]</h3>
-          <p>Première expérience professionnelle significative.</p>
-          <p style="margin-top:0.5rem; font-size: 0.95rem;">Assistance aux utilisateurs, maintenance de parc informatique et découverte des infrastructures réseaux en production.</p>
-        </div>
-
-        <!-- BTS SIO -->
         <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
           <span class="date-badge">2022 - 2024</span>
           <h3>BTS SIO option SISR</h3>
           <p>Pole supérieur Sainte-Marie, Joinville-le-Pont.<br>Apprentissage intensif des réseaux et systèmes.</p>
         </div>
 
-        <!-- Bac -->
         <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
           <span class="date-badge">2021 - 2022</span>
           <h3>Baccalauréat Général</h3>
@@ -475,7 +510,6 @@
       <h2 data-aos="fade-up">Mes Projets</h2>
       <div class="projects-grid">
         
-        <!-- Projet 1: Windows Server -->
         <div class="glass-card project-card" data-aos="zoom-in">
           <div class="project-icon-wrapper">
             <i class="fa-brands fa-windows"></i>
@@ -485,7 +519,6 @@
           <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#WindowsServer #AD #GPO</div>
         </div>
 
-        <!-- Projet 2: Interface Scan -->
         <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="100">
           <div class="project-icon-wrapper">
             <i class="fa-solid fa-network-wired"></i>
@@ -495,7 +528,6 @@
           <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Python #Network #Security</div>
         </div>
 
-        <!-- Projet 3: Météo -->
         <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="200">
           <div class="project-icon-wrapper">
             <i class="fa-solid fa-cloud-sun-rain"></i>
@@ -506,7 +538,6 @@
           <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#API #JS #Frontend</div>
         </div>
 
-        <!-- Projet 4: Linux -->
         <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="300">
           <div class="project-icon-wrapper">
             <i class="fa-brands fa-linux"></i>
@@ -516,7 +547,6 @@
           <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Debian #Bash #Hardening</div>
         </div>
 
-        <!-- Projet 5: Site Echecs -->
         <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="400">
           <img src="https://via.placeholder.com/400x200/1e293b/0ea5e9?text=Championnes+Echecs" alt="Site Web" class="project-preview">
           <h3>Site Championnes d'Échecs</h3>
@@ -567,33 +597,33 @@
       once: true
     });
 
-    // --- Config Particles.js ---
+    // --- Config Particles.js (ECLAIRCIE) ---
     particlesJS("particles-js", {
       "particles": {
         "number": {
           "value": 80,
           "density": { "enable": true, "value_area": 800 }
         },
-        "color": { "value": "#0ea5e9" }, /* Couleur des points (Cyan) */
+        "color": { "value": "#ffffff" }, /* Particules Blanches pour mieux ressortir */
         "shape": { "type": "circle" },
         "opacity": {
-          "value": 0.5,
-          "random": false
+          "value": 0.8, /* Plus opaque (visible) */
+          "random": true
         },
         "size": {
-          "value": 3,
+          "value": 4, /* Légèrement plus gros */
           "random": true
         },
         "line_linked": {
           "enable": true,
           "distance": 150,
-          "color": "#6366f1", /* Couleur des lignes (Indigo) */
-          "opacity": 0.3,
+          "color": "#6366f1", 
+          "opacity": 0.4,
           "width": 1
         },
         "move": {
           "enable": true,
-          "speed": 2, /* Vitesse des particules */
+          "speed": 2, 
           "direction": "none",
           "random": false,
           "straight": false,
@@ -614,6 +644,33 @@
         }
       },
       "retina_detect": true
+    });
+
+    // --- Script Active Link on Scroll (Indicateur Flèche) ---
+    // Ce script détecte quelle section est visible et déplace la classe .active
+    document.addEventListener("DOMContentLoaded", () => {
+      const sections = document.querySelectorAll("header, section");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          // Si on a scrollé au moins jusqu'à 1/3 de la section
+          if (scrollY >= (sectionTop - sectionHeight / 3)) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href").includes(current)) {
+            link.classList.add("active");
+          }
+        });
+      });
     });
 
     // --- Script RSS (Identique) ---
