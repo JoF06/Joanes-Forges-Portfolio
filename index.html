@@ -307,12 +307,14 @@
       border: 1px solid rgba(14, 165, 233, 0.2);
     }
 
-    /* --- Projects --- */
+    /* --- Projects & Certifications (Modifiés) --- */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem;
+      margin-top: 1.5rem;
     }
+    
     .project-icon-wrapper {
       width: 100%;
       height: 120px;
@@ -341,11 +343,60 @@
       font-weight: 600;
       border-bottom: 1px dashed var(--primary);
     }
+    
+    /* Styles pour les sous-sections de projets */
+    .sub-section-title {
+      font-size: 1.8rem;
+      margin: 3rem 0 1.5rem 0;
+      color: var(--text-main);
+      border-left: 4px solid var(--secondary);
+      padding-left: 1rem;
+    }
 
     /* --- RSS Feed --- */
-    .rss-container {
-      background: rgba(15, 23, 42, 0.6);
-    }
+    /* Container de l'article */
+.rss-item {
+  display: flex; /* Aligne l'image et le texte côte à côte */
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--glass-border);
+  align-items: flex-start;
+}
+
+/* Taille réduite de l'image */
+.rss-item img, .no-image-placeholder {
+  width: 80px;  /* Largeur fixe petite */
+  height: 80px; /* Hauteur fixe pour faire un carré */
+  flex-shrink: 0; /* Empêche l'image de s'écraser */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.no-image-placeholder {
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Ajustement du contenu textuel à droite */
+.rss-content {
+  flex: 1;
+}
+
+.rss-item h4 {
+  margin: 0.2rem 0;
+  line-height: 1.3;
+}
+
+.rss-item h4 a {
+  font-size: 1rem;
+  color: var(--text-main);
+}
 
     /* --- Contact Form --- */
     form {
@@ -410,6 +461,7 @@
     <ul>
       <li><a href="#presentation" class="nav-link active"><i class="fa-solid fa-house"></i></a></li>
       <li><a href="#apropos" class="nav-link">À Propos</a></li>
+      <li><a href="#certifications" class="nav-link">Certifs</a></li>
       <li><a href="#bts-sio" class="nav-link">BTS</a></li>
       <li><a href="#formation" class="nav-link">Parcours</a></li>
       <li><a href="#projets" class="nav-link">Projets</a></li>
@@ -453,27 +505,6 @@
       </div>
     </section>
 
-    <section id="bts-sio">
-      <h2 data-aos="fade-up">Le BTS SIO</h2>
-      <div class="sio-grid">
-        <div class="glass-card sio-card" data-aos="fade-up" data-aos-delay="100">
-          <h3><i class="fa-solid fa-server"></i> Option SISR</h3>
-          <p><strong>Solutions d'Infrastructure, Systèmes et Réseaux.</strong></p>
-          <p style="margin-top: 1rem;">Le cœur de mon métier : faire en sorte que l'informatique tourne et soit sécurisée.</p>
-          <ul style="margin-top: 1rem; list-style: none; padding: 0;">
-            <li><i class="fa-solid fa-check" style="color:var(--primary); margin-right:5px;"></i> Admin Windows / Linux</li>
-            <li><i class="fa-solid fa-check" style="color:var(--primary); margin-right:5px;"></i> Routage & Switching Cisco</li>
-            <li><i class="fa-solid fa-check" style="color:var(--primary); margin-right:5px;"></i> Cybersécurité & Firewalls</li>
-          </ul>
-        </div>
-        <div class="glass-card sio-card" data-aos="fade-up" data-aos-delay="200" style="opacity: 0.7;">
-          <h3><i class="fa-solid fa-code"></i> Option SLAM</h3>
-          <p><strong>Solutions Logicielles et Applications Métiers.</strong></p>
-          <p style="margin-top: 1rem;">L'autre versant du BTS, focalisé sur le développement (Java, PHP, C#) et la conception d'applications.</p>
-        </div>
-      </div>
-    </section>
-
     <section id="formation">
       <h2 data-aos="fade-up">Parcours & Stages</h2>
       <div class="timeline">
@@ -492,7 +523,7 @@
         </div>
 
         <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
-          <span class="date-badge">2022 - 2024</span>
+          <span class="date-badge">2024 - 2026</span>
           <h3>BTS SIO option SISR</h3>
           <p>Pole supérieur Sainte-Marie, Joinville-le-Pont.<br>Apprentissage intensif des réseaux et systèmes.</p>
         </div>
@@ -507,62 +538,149 @@
     </section>
 
     <section id="projets">
-      <h2 data-aos="fade-up">Mes Projets</h2>
-      <div class="projects-grid">
-        
-        <div class="glass-card project-card" data-aos="zoom-in">
-          <div class="project-icon-wrapper">
-            <i class="fa-brands fa-windows"></i>
-          </div>
-          <h3>Configuration Windows Server</h3>
-          <p>Mise en place d'un contrôleur de domaine, gestion Active Directory, GPO, DNS et DHCP.</p>
-          <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#WindowsServer #AD #GPO</div>
-        </div>
-
-        <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="100">
-          <div class="project-icon-wrapper">
-            <i class="fa-solid fa-network-wired"></i>
-          </div>
-          <h3>Interface Scan Réseau</h3>
-          <p>Développement d'une interface pour scanner les appareils connectés sur un réseau local (IP, Mac Address).</p>
-          <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Python #Network #Security</div>
-        </div>
-
-        <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="200">
-          <div class="project-icon-wrapper">
-            <i class="fa-solid fa-cloud-sun-rain"></i>
-          </div>
-          <h3>Application Météo</h3>
-          <p>Création d'un site web météo dynamique utilisant une API externe pour afficher les prévisions en temps réel.</p>
-          <a href="https://jof06.github.io/MeteoVert/" target="_blank" class="project-link">Voir le site <i class="fa-solid fa-external-link-alt"></i></a>
-          <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#API #JS #Frontend</div>
-        </div>
-
-        <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="300">
-          <div class="project-icon-wrapper">
-            <i class="fa-brands fa-linux"></i>
-          </div>
-          <h3>Déploiement Serveur Linux</h3>
-          <p>Installation et sécurisation d'un serveur Debian (SSH, Pare-feu UFW, Fail2Ban).</p>
-          <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Debian #Bash #Hardening</div>
-        </div>
-
-        <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="400">
-          <img src="https://via.placeholder.com/400x200/1e293b/0ea5e9?text=Championnes+Echecs" alt="Site Web" class="project-preview">
-          <h3>Site Championnes d'Échecs</h3>
-          <p>Site vitrine pour promouvoir l'association d'échecs de Champigny.</p>
-          <a href="https://championnes.page.gd/" target="_blank" class="project-link">Voir le site <i class="fa-solid fa-external-link-alt"></i></a>
-        </div>
+  <h2 data-aos="fade-up">Mes Projets</h2>
+  
+  <h3 class="sub-section-title" data-aos="fade-right">Scolaires</h3>
+  <div class="projects-grid">
+    
+    <div class="glass-card project-card" data-aos="zoom-in">
+      <div class="project-icon-wrapper">
+        <i class="fa-solid fa-building-shield"></i>
+      </div>
+      <h3>Maison des Ligues (M2L)</h3>
+      <p>Analyse et gestion d'une infrastructure pour ligues sportives. Étude du contexte, du SI et mise en place d'un système de réservation.</p>
+      
+      <div style="display: flex; flex-direction: column;">
+        <a href="Maison Des ligues Mission 1.pdf" class="project-link" style="font-size: 0.75rem;"><i class="fa-solid fa-file-pdf"></i> Mission 1 : Analyse Contexte</a>
+        <a href="Maison Des ligues Mission 2.pdf" class="project-link" style="font-size: 0.75rem;"><i class="fa-solid fa-file-pdf"></i> Mission 2 : Étude du SI</a>
+        <a href="Maison Des ligues Mission 3.pdf" class="project-link" style="font-size: 0.75rem;"><i class="fa-solid fa-file-pdf"></i> Mission 3 : Réservation Salles</a>
+        <a href="Maison Des ligues Mission 4.pdf" class="project-link" style="font-size: 0.75rem;"><i class="fa-solid fa-file-pdf"></i> Mission 4 : Gestion du Projet</a>
+        <a href="SIO1_Projet_M2L-3.pdf" class="project-link" style="font-size: 0.75rem;"><i class="fa-solid fa-file-pdf"></i> Sujet d'étude</a>
 
       </div>
-    </section>
+      <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Analyse #GLPI #MRBS</div>
+    </div>
 
-    <section id="veille">
-      <h2 data-aos="fade-up">Veille Technologique</h2>
-      <div class="glass-card rss-container" data-aos="fade-up">
-        <h3 style="margin-bottom: 1.5rem; color: var(--primary);"><i class="fa-solid fa-rss"></i> Augmented Reality News</h3>
-        <div id="rss-feed-ar" class="rss-feed">
-          <p style="text-align: center; padding: 2rem;">Chargement du flux en cours...</p>
+    <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="100">
+      <div class="project-icon-wrapper">
+        <i class="fa-solid fa-person-running"></i>
+      </div>
+      <h3>Running Hightech</h3>
+      <p>Travaux pratiques sur la gestion d'un parc informatique d'une entreprise de matériel de sport connecté.</p>
+      <a href="Running Hightech V4 réduite corrigée.pdf" class="project-link"><i class="fa-solid fa-file-pdf"></i> Consulter le TP</a>
+      <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#SISR #Reseau #Infrastructure</div>
+    </div>
+
+  </div>
+
+  <h3 class="sub-section-title" data-aos="fade-right">Stages</h3>
+  <div class="projects-grid">
+    
+    <div class="glass-card project-card" data-aos="zoom-in">
+      <div class="project-icon-wrapper">
+        <i class="fa-solid fa-file-signature"></i>
+      </div>
+      <h3>Cahier des Charges - Iro-o</h3>
+      <p>Définition des besoins techniques pour la mise à jour de l'infrastructure réseau et l'assistance utilisateur.</p>
+      <a href="Cahier_des_charges_de_stage_Joanes_Forgès_SIO2-1.pdf" class="project-link"><i class="fa-solid fa-file-pdf"></i> Voir le document</a>
+      <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Documentation #Audit</div>
+    </div>
+
+    <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="200">
+      <div class="project-icon-wrapper">
+        <i class="fa-solid fa-network-wired"></i>
+      </div>
+      <h3>Interface Scan Réseau</h3>
+      <p>Développement d'une interface pour scanner les appareils connectés sur un réseau local (IP, Mac Address).</p>
+      <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Python #Network #Security</div>
+    </div>
+
+    <div class="glass-card project-card" data-aos="zoom-in">
+      <div class="project-icon-wrapper">
+        <i class="fa-solid fa-cloud-sun-rain"></i>
+      </div>
+      <h3>Application Météo</h3>
+      <p>Création d'un site web météo dynamique utilisant une API externe pour afficher les prévisions en temps réel.</p>
+      <a href="https://jof06.github.io/MeteoVert/" target="_blank" class="project-link">Voir le site <i class="fa-solid fa-external-link-alt"></i></a>
+      <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#API #JS #Frontend</div>
+    </div>
+    
+    <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="200">
+      <div class="project-icon-wrapper">
+        <i class="fa-brands fa-windows"></i>
+      </div>
+      <h3>Configuration Windows Server</h3>
+      <p>Mise en place d'un contrôleur de domaine, gestion Active Directory, GPO, DNS et DHCP.</p>
+      <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#WindowsServer #AD #GPO</div>
+    </div>
+  </div>
+
+  <h3 class="sub-section-title" data-aos="fade-right">Personnels</h3>
+  <div class="projects-grid">
+    <div class="glass-card project-card" data-aos="zoom-in">
+      <div class="project-icon-wrapper">
+        <i class="fa-brands fa-linux"></i>
+      </div>
+      <h3>Déploiement Serveur Linux</h3>
+      <p>Installation et sécurisation d'un serveur Debian (SSH, Pare-feu UFW, Fail2Ban).</p>
+      <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Debian #Bash #Hardening</div>
+    </div>
+
+    <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="100">
+      <img src="https://via.placeholder.com/400x200/1e293b/0ea5e9?text=Championnes+Echecs" alt="Site Web" class="project-preview">
+      <h3>Site Championnes d'Échecs</h3>
+      <p>Site vitrine pour promouvoir l'association d'échecs de Champigny.</p>
+      <a href="https://championnes.page.gd/" target="_blank" class="project-link">Voir le site <i class="fa-solid fa-external-link-alt"></i></a>
+    </div>
+  </div>
+</section>
+
+    
+    <section id="veille-techno">
+  <h2 data-aos="fade-up">Veille Technologique</h2>
+  <div class="glass-card rss-container" data-aos="fade-up">
+    <h3 style="margin-bottom: 1.5rem; color: var(--primary);">
+      <a href="https://rss.app/feeds/tEOdod6ROCmiqcpE.xml" target="_blank" style="text-decoration: none; color: inherit;">
+        <i class="fa-solid fa-rss"></i> Augmented Reality News
+      </a>
+    </h3>
+    <div id="rss-feed-ar" class="rss-feed">
+      <p style="text-align: center; padding: 2rem;">Chargement du flux en cours...</p>
+    </div>
+  </div>
+</section>
+
+<section id="veille-cyber">
+  <h2 data-aos="fade-up">Veille Cybersécurité</h2>
+  <div class="glass-card rss-container" data-aos="fade-up">
+    <h3 style="margin-bottom: 1.5rem; color: var(--primary);">
+      <a href="https://rss.app/feeds/tQepijhnNGFWohoW.xml" target="_blank" style="text-decoration: none; color: inherit;">
+        <i class="fa-solid fa-rss"></i> Cybersécurité News
+      </a>
+    </h3>
+    <div id="rss-feed-cyber" class="rss-feed">
+      <p style="text-align: center; padding: 2rem;">Chargement du flux en cours...</p>
+    </div>
+  </div>
+</section>
+
+<section id="bts-sio">
+      <h2 data-aos="fade-up">Le BTS SIO</h2>
+      <div class="sio-grid">
+        <div class="glass-card sio-card" data-aos="fade-up" data-aos-delay="100">
+          <h3><i class="fa-solid fa-server"></i> Option SISR</h3>
+          <p><strong>Solutions d'Infrastructure, Systèmes et Réseaux.</strong></p>
+          <p style="margin-top: 1rem;">Le cœur de mon métier : faire en sorte que l'informatique tourne et soit sécurisée.</p>
+          <ul style="margin-top: 1rem; list-style: none; padding: 0;">
+            <li><i class="fa-solid fa-check" style="color:var(--primary); margin-right:5px;"></i> Admin Windows / Linux</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary); margin-right:5px;"></i> Routage & Switching Cisco</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary); margin-right:5px;"></i> Cybersécurité & Firewalls</li>
+          </ul>
+        </div>
+        <div class="glass-card sio-card" data-aos="fade-up" data-aos-delay="200" style="opacity: 0.7;">
+          <h3><i class="fa-solid fa-code"></i> Option SLAM</h3>
+          <p><strong>Solutions Logicielles et Applications Métiers.</strong></p>
+          <p style="margin-top: 1rem;">L'autre versant du BTS, focalisé sur le développement (Java, PHP, C#) et la conception d'applications.</p>
         </div>
       </div>
     </section>
@@ -590,139 +708,115 @@
   </footer>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 800,
-      offset: 50,
-      once: true
-    });
+<script>
+  AOS.init({ duration: 800, offset: 50, once: true });
 
-    // --- Config Particles.js (ECLAIRCIE) ---
-    particlesJS("particles-js", {
-      "particles": {
-        "number": {
-          "value": 80,
-          "density": { "enable": true, "value_area": 800 }
-        },
-        "color": { "value": "#ffffff" }, /* Particules Blanches pour mieux ressortir */
-        "shape": { "type": "circle" },
-        "opacity": {
-          "value": 0.8, /* Plus opaque (visible) */
-          "random": true
-        },
-        "size": {
-          "value": 4, /* Légèrement plus gros */
-          "random": true
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#6366f1", 
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2, 
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": { "enable": true, "mode": "grab" },
-          "onclick": { "enable": true, "mode": "push" },
-          "resize": true
-        },
-        "modes": {
-          "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
-          "push": { "particles_nb": 4 }
-        }
-      },
-      "retina_detect": true
-    });
+  // --- Particles.js ---
+  particlesJS("particles-js", {
+    "particles": {
+      "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+      "color": { "value": "#ffffff" },
+      "shape": { "type": "circle" },
+      "opacity": { "value": 0.8, "random": true },
+      "size": { "value": 4, "random": true },
+      "line_linked": { "enable": true, "distance": 150, "color": "#6366f1", "opacity": 0.4, "width": 1 },
+      "move": { "enable": true, "speed": 2, "out_mode": "out" }
+    },
+    "interactivity": {
+      "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } }
+    },
+    "retina_detect": true
+  });
 
-    // --- Script Active Link on Scroll (Indicateur Flèche) ---
-    // Ce script détecte quelle section est visible et déplace la classe .active
-    document.addEventListener("DOMContentLoaded", () => {
-      const sections = document.querySelectorAll("header, section");
-      const navLinks = document.querySelectorAll(".nav-link");
+  // --- Gestion du Flux RSS avec Images ---
+  async function loadRSS(containerId, rssUrl) {
+    const container = document.getElementById(containerId);
+    try {
+      const proxyUrl = 'https://api.allorigins.win/get?url=';
+      const response = await fetch(proxyUrl + encodeURIComponent(rssUrl));
+      
+      if (!response.ok) throw new Error('Erreur réseau');
+      
+      const data = await response.json();
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+      const items = xmlDoc.querySelectorAll("item");
 
-      window.addEventListener("scroll", () => {
-        let current = "";
+      container.innerHTML = ''; 
+
+      if (items.length === 0) {
+        container.innerHTML = '<p>Aucun article trouvé.</p>';
+        return;
+      }
+
+      for (let i = 0; i < Math.min(items.length, 4); i++) {
+        const item = items[i];
+        const title = item.querySelector("title")?.textContent || "Sans titre";
+        const link = item.querySelector("link")?.textContent || "#";
+        const pubDate = item.querySelector("pubDate")?.textContent || "";
+        let desc = item.querySelector("description")?.textContent || "";
         
-        sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          // Si on a scrollé au moins jusqu'à 1/3 de la section
-          if (scrollY >= (sectionTop - sectionHeight / 3)) {
-            current = section.getAttribute("id");
-          }
-        });
+        let imageUrl = '';
 
-        navLinks.forEach((link) => {
-          link.classList.remove("active");
-          if (link.getAttribute("href").includes(current)) {
-            link.classList.add("active");
+        // Tenter de trouver une image
+        // 1. Chercher dans les balises media:content ou enclosure
+        const mediaContent = item.querySelector("media\\:content, enclosure");
+        if (mediaContent && mediaContent.getAttribute('url')) {
+          imageUrl = mediaContent.getAttribute('url');
+        } else {
+          // 2. Chercher des images dans la description (balise <img>)
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = desc;
+          const imgTag = tempDiv.querySelector('img');
+          if (imgTag && imgTag.src) {
+            imageUrl = imgTag.src;
           }
-        });
+        }
+
+        // Nettoyage de la description
+        desc = desc.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
+        const dateStr = pubDate ? new Date(pubDate).toLocaleDateString('fr-FR') : "";
+
+        // Générer le HTML de l'image ou un placeholder si aucune image
+        const imageHtml = imageUrl 
+          ? `<img src="${imageUrl}" alt="${title}" loading="lazy">`
+          : `<div class="no-image-placeholder">Pas d'image</div>`;
+
+        container.innerHTML += `
+          <div class="rss-item">
+            ${imageHtml}
+            <span class="rss-date">${dateStr}</span>
+            <h4><a href="${link}" target="_blank">${title}</a></h4>
+            <p style="font-size: 0.9rem;">${desc}</p>
+          </div>`;
+      }
+    } catch (error) {
+      console.error(`Erreur de chargement RSS pour ${containerId}:`, error);
+      container.innerHTML = `<p style="color:var(--accent);">Erreur de chargement. <a href="${rssUrl}" target="_blank">Lien direct vers le flux</a></p>`;
+    }
+  }
+
+  // Lancement au chargement de la page
+  document.addEventListener("DOMContentLoaded", () => {
+    loadRSS('rss-feed-ar', 'https://rss.app/feeds/tEOdod6ROCmiqcpE.xml'); // Veille Technologique
+    loadRSS('rss-feed-cyber', 'https://rss.app/feeds/tQepijhnNGFWohoW.xml'); // Veille Cybersécurité
+    
+    // --- Active Link on Scroll ---
+    const sections = document.querySelectorAll("header, section");
+    const navLinks = document.querySelectorAll(".nav-link");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        if (scrollY >= (section.offsetTop - 200)) { // Ajustez l'offset si nécessaire
+          current = section.getAttribute("id");
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) link.classList.add("active");
       });
     });
-
-    // --- Script RSS (Identique) ---
-    async function fetchAndDisplayARRSS() {
-      const feedContainer = document.getElementById('rss-feed-ar');
-      try {
-        const proxyUrl = 'https://api.allorigins.win/get?url=';
-        const targetUrl = encodeURIComponent('https://augmented.reality.news/rss.xml');
-        const response = await fetch(proxyUrl + targetUrl);
-        
-        if (!response.ok) throw new Error('Network response was not ok');
-        
-        const data = await response.json();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data.contents, "text/xml");
-        const items = xmlDoc.querySelectorAll("item");
-
-        feedContainer.innerHTML = ''; 
-
-        if (items.length === 0) {
-          feedContainer.innerHTML = '<p>Aucun article trouvé.</p>';
-          return;
-        }
-
-        const maxItems = Math.min(items.length, 4);
-
-        for (let i = 0; i < maxItems; i++) {
-          const item = items[i];
-          const title = item.querySelector("title")?.textContent || "Sans titre";
-          const link = item.querySelector("link")?.textContent || "#";
-          const pubDate = item.querySelector("pubDate")?.textContent || "";
-          
-          let description = item.querySelector("description")?.textContent || "";
-          description = description.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '').replace(/<[^>]*>/g, '').substring(0, 120) + '...';
-
-          const dateStr = pubDate ? new Date(pubDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : "";
-
-          feedContainer.innerHTML += `
-            <div class="rss-item">
-              <span class="rss-date">${dateStr}</span>
-              <h4><a href="${link}" target="_blank">${title}</a></h4>
-              <p style="font-size: 0.9rem; margin-top: 0.5rem;">${description}</p>
-            </div>
-          `;
-        }
-      } catch (error) {
-        console.error("Erreur RSS:", error);
-        feedContainer.innerHTML = `<p style="color: #fca5a5; text-align:center;">Impossible de charger le flux RSS.<br><a href="https://augmented.reality.news" style="text-decoration:underline;">Voir le site direct</a></p>`;
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', fetchAndDisplayARRSS);
-  </script>
+  });
+</script>
 </body>
 </html>
