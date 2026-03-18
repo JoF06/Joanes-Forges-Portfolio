@@ -499,6 +499,9 @@
             <a href="CV Joanes Forges.pdf" class="cta-outline" target="_blank" title="Lien vers le CV PDF">
               <i class="fa-solid fa-file-pdf"></i> Voir mon CV
             </a>
+            <a href="Tableau_de_synthese_joanes.pdf" class="cta-outline" target="_blank" title="Lien vers le Tableau de Synthèse Excel">
+              <i class="fa-solid fa-file-excel"></i> Voir mon Tableau de Synthèse
+            </a>
           </div>
 
         </div>
@@ -554,8 +557,8 @@
     </div>
     <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="200">
       <div class="project-icon-wrapper"><i class="fa-solid fa-terminal"></i></div>
-      <h3>Linux / Bash</h3>
-      <p>OpenClassrooms - Administration Système</p>
+      <h3>HTML / CSS</h3>
+      <p>OpenClassrooms - Créez votre site web avec HTML5 et CSS3</p>
       <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--primary);">Maîtrise de la ligne de commande</div>
     </div>
   </div>
@@ -612,10 +615,14 @@
 
     <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="200">
       <div class="project-icon-wrapper">
-        <img src="serveurs img.jpg" alt="Serveurs" height=120px>
+        <img src="serveurs.jpg" alt="Serveurs" height=120px>
       </div>
       <h3>Interface Scan Réseau</h3>
       <p>Développement d'une interface pour scanner les appareils connectés sur un réseau local (IP, Mac Address).</p>
+      <div style="display: flex; flex-direction: column;">
+      <a href="Réseau Iro-o.pdf" class="project-link">Voir le Schéma Réseau <i class="fa-solid fa-external-link-alt"></i> </a>
+      <a href="projet scan réseau.png" class="project-link"><i class="fa-solid fa-file-pdf"></i> Voir le projet </a>
+      </div>
       <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Python #Network #Security</div>
     </div>
 
@@ -760,92 +767,119 @@
   // --- Particles.js ---
   particlesJS("particles-js", {
     "particles": {
-      "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-      "color": { "value": "#ffffff" },
-      "shape": { "type": "circle" },
-      "opacity": { "value": 0.8, "random": true },
-      "size": { "value": 4, "random": true },
-      "line_linked": { "enable": true, "distance": 150, "color": "#6366f1", "opacity": 0.4, "width": 1 },
-      "move": { "enable": true, "speed": 2, "out_mode": "out" }
+      "number": { "value": 150, "density": { "enable": true, "value_area": 300 } },
+      "color": { "value": "#878584" },
+      "shape": { "type": "polygon", "polygon": { "nb_sides": 6 } },
+      "opacity": { "value": 0.5, "random": true },
+      "size": { "value": 1.5, "random": true },
+      "line_linked": { "enable": true, "distance":100, "color": "#F7B264", "opacity": 0.15, "width": 2 },
+      "move": { "enable": true, "speed": 0.75, "out_mode": "out" }
     },
     "interactivity": {
-      "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } }
-    },
+  "events": { 
+    "onhover": { "enable": true, "mode": "grab" }, 
+    "onclick": { "enable": true, "mode": "push" } 
+  },
     "retina_detect": true
-  });
+  }});
 
-  // --- Gestion du Flux RSS avec Images ---
-  async function loadRSS(containerId, rssUrl) {
-    const container = document.getElementById(containerId);
-    try {
-      const proxyUrl = 'https://api.allorigins.win/get?url=';
-      const response = await fetch(proxyUrl + encodeURIComponent(rssUrl));
-      
-      if (!response.ok) throw new Error('Erreur réseau');
-      
-      const data = await response.json();
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(data.contents, "text/xml");
-      const items = xmlDoc.querySelectorAll("item");
+ // --- Gestion du Flux RSS Optimisée pour le Web ---
+async function loadRSS(containerId, rssUrl) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
-      container.innerHTML = ''; 
+  try {
+    // Utilisation du proxy AllOrigins pour contourner les blocages CORS
+    const proxyUrl = 'https://api.allorigins.win/get?url=';
+    const response = await fetch(proxyUrl + encodeURIComponent(rssUrl));
+    
+    if (!response.ok) throw new Error('Erreur réseau');
+    
+    const data = await response.json();
+    const parser = new DOMParser();
+    // On parse le contenu texte reçu en document XML
+    const xmlDoc = parser.parseFromString(data.contents, "text/xml");
 
-      if (items.length === 0) {
-        container.innerHTML = '<p>Aucun article trouvé.</p>';
-        return;
-      }
-
-      for (let i = 0; i < Math.min(items.length, 4); i++) {
-        const item = items[i];
-        const title = item.querySelector("title")?.textContent || "Sans titre";
-        const link = item.querySelector("link")?.textContent || "#";
-        const pubDate = item.querySelector("pubDate")?.textContent || "";
-        let desc = item.querySelector("description")?.textContent || "";
-        
-        let imageUrl = '';
-
-        // Tenter de trouver une image
-        // 1. Chercher dans les balises media:content ou enclosure
-        const mediaContent = item.querySelector("media\\:content, enclosure");
-        if (mediaContent && mediaContent.getAttribute('url')) {
-          imageUrl = mediaContent.getAttribute('url');
-        } else {
-          // 2. Chercher des images dans la description (balise <img>)
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = desc;
-          const imgTag = tempDiv.querySelector('img');
-          if (imgTag && imgTag.src) {
-            imageUrl = imgTag.src;
-          }
-        }
-
-        // Nettoyage de la description
-        desc = desc.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
-        const dateStr = pubDate ? new Date(pubDate).toLocaleDateString('fr-FR') : "";
-
-        // Générer le HTML de l'image ou un placeholder si aucune image
-        const imageHtml = imageUrl 
-          ? `<img src="${imageUrl}" alt="${title}" loading="lazy">`
-          : `<div class="no-image-placeholder">Pas d'image</div>`;
-
-        container.innerHTML += `
-          <div class="rss-item">
-            ${imageHtml}
-            <span class="rss-date">${dateStr}</span>
-            <h4><a href="${link}" target="_blank">${title}</a></h4>
-            <p style="font-size: 0.9rem;">${desc}</p>
-          </div>`;
-      }
-    } catch (error) {
-      console.error(`Erreur de chargement RSS pour ${containerId}:`, error);
-      container.innerHTML = `<p style="color:var(--accent);">Erreur de chargement. <a href="${rssUrl}" target="_blank">Lien direct vers le flux</a></p>`;
+    // Vérification si le XML est valide
+    if (xmlDoc.querySelector("parsererror")) {
+      throw new Error("Erreur de parsing XML");
     }
+
+    const items = xmlDoc.querySelectorAll("item");
+    container.innerHTML = '';
+
+    if (items.length === 0) {
+      container.innerHTML = '<p>Aucun article récent trouvé.</p>';
+      return;
+    }
+
+    // On limite à 4 articles pour garder une mise en page propre
+    for (let i = 0; i < Math.min(items.length, 4); i++) {
+      const item = items[i];
+      
+      // Sécurisation de l'extraction des données
+      const title = item.querySelector("title")?.textContent || "Sans titre";
+      const link = item.querySelector("link")?.textContent || "#";
+      const pubDate = item.querySelector("pubDate")?.textContent || "";
+      let desc = item.querySelector("description")?.textContent || "";
+      
+      let imageUrl = '';
+
+      // 1. Recherche de l'image via les balises standards (media:content, enclosure)
+      // On utilise getElementsByTagName pour éviter les soucis de "Namespace" (:)
+      const mediaContent = item.getElementsByTagName("media:content")[0];
+      const enclosure = item.querySelector("enclosure");
+
+      if (mediaContent && mediaContent.getAttribute('url')) {
+        imageUrl = mediaContent.getAttribute('url');
+      } else if (enclosure && enclosure.getAttribute('url')) {
+        imageUrl = enclosure.getAttribute('url');
+      } else {
+        // 2. Fallback : Chercher une balise <img> dans la description via Regex
+        const imgMatch = desc.match(/<img[^>]+src="([^">]+)"/);
+        if (imgMatch) imageUrl = imgMatch[1];
+      }
+
+      // Nettoyage de la description (on enlève les balises HTML et on tronque)
+      const cleanDesc = desc.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
+      
+      // Formatage de la date à la française
+      const dateStr = pubDate ? new Date(pubDate).toLocaleDateString('fr-FR', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+      }) : "";
+
+      // Injection du HTML
+      container.innerHTML += `
+        <div class="rss-item" style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+          ${imageUrl ? `<img src="${imageUrl}" alt="${title}" style="width:100%; height:140px; object-fit:cover; border-radius:8px; margin-bottom:10px;">` : ''}
+          <div class="rss-content">
+            <span style="font-size: 0.75rem; color: var(--primary);">${dateStr}</span>
+            <h4 style="margin: 5px 0; font-size: 1rem;">
+              <a href="${link}" target="_blank" style="color: white; text-decoration: none; transition: 0.3s;">${title}</a>
+            </h4>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 5px;">${cleanDesc}</p>
+          </div>
+        </div>`;
+    }
+  } catch (error) {
+    console.error(`Erreur RSS [${containerId}]:`, error);
+    container.innerHTML = `<p style="color:var(--accent); font-size: 0.8rem;">Flux temporairement indisponible.</p>`;
   }
+}
+
+// --- Appel des flux au chargement ---
+// Remplace par tes nouveaux liens réels
+document.addEventListener('DOMContentLoaded', () => {
+  loadRSS('rss-ar', 'https://arpost.co/feed/'); 
+  loadRSS('rss-cyber', 'https://cyberscoop.com/feed/');
+});
 
   // Lancement au chargement de la page
   document.addEventListener("DOMContentLoaded", () => {
-    loadRSS('rss-feed-ar', 'https://rss.app/feeds/tEOdod6ROCmiqcpE.xml'); // Veille Technologique
-    loadRSS('rss-feed-cyber', 'https://rss.app/feeds/tQepijhnNGFWohoW.xml'); // Veille Cybersécurité
+    loadRSS('rss-feed-ar', 'https://arpost.co/feed/'); // Veille Technologique
+    loadRSS('rss-feed-cyber', 'https://cyberscoop.com/feed/'); // Veille Cybersécurité
     
     // --- Active Link on Scroll ---
     const sections = document.querySelectorAll("header, section");
@@ -866,4 +900,3 @@
 </script>
 </body>
 </html>
-
