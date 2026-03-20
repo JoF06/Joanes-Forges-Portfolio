@@ -353,25 +353,38 @@
       padding-left: 1rem;
     }
 
-    /* --- RSS Feed --- */
-    /* Container de l'article */
-.rss-item {
-  display: flex; /* Aligne l'image et le texte côte à côte */
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--glass-border);
-  align-items: flex-start;
+    /*--- CSS pour le confinement des tags et les images de hauteur max 120px ---*/
+.veille-step {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden; /* Empêche tout contenu de dépasser de la card */
 }
 
-/* Taille réduite de l'image */
-.rss-item img, .no-image-placeholder {
-  width: 80px;  /* Largeur fixe petite */
-  height: 80px; /* Hauteur fixe pour faire un carré */
-  flex-shrink: 0; /* Empêche l'image de s'écraser */
-  object-fit: cover;
-  border-radius: 8px;
+/* Conteneur d'image limité à 120px de hauteur */
+.veille-img-container {
+  width: 100%;
+  height: 120px; /* Hauteur maximale stricte */
+  overflow: hidden; /* Rogne l'image si elle est trop grande */
+  border-radius: 8px; /* Arrondit les angles pour coller au design */
+  margin-bottom: 1rem; /* Espace avant le titre h4 */
 }
+
+.veille-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Remplit l'espace sans déformer l'image */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.veille-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 100%; /* S'assure que les tags restent dans la largeur de la card */
+  margin-top: auto; /* Pousse les tags vers le bas pour aligner les cartes */
+}
+
 
 .no-image-placeholder {
   background: rgba(255, 255, 255, 0.05);
@@ -383,20 +396,6 @@
   text-align: center;
 }
 
-/* Ajustement du contenu textuel à droite */
-.rss-content {
-  flex: 1;
-}
-
-.rss-item h4 {
-  margin: 0.2rem 0;
-  line-height: 1.3;
-}
-
-.rss-item h4 a {
-  font-size: 1rem;
-  color: var(--text-main);
-}
 
     /* --- Contact Form --- */
     form {
@@ -660,7 +659,7 @@
 
 <section id="veille">
   <h2 data-aos="fade-up">Veille Technologique</h2>
-  
+
   <h3 class="sub-section-title" data-aos="fade-right">
     <i class="fa-solid fa-vr-cardboard"></i> Thème 1 : La Réalité Augmentée en Maintenance
   </h3>
@@ -670,34 +669,43 @@
         <span class="veille-date">Début 2025</span>
         <i class="fa-solid fa-headset veille-icon"></i>
       </div>
+      <div class="veille-img-container">
+        <img src="img-ar-materiel.jpg" alt="Lunettes AR pour assistance">
+      </div>
       <h4>Démocratisation Matérielle</h4>
-      <p class="veille-summary">Essor des lunettes légères pour l'assistance à distance sur site.</p>
+      <p class="veille-summary">Google I/O 2025 : Gemini pour maintenance prédictive, scannage contextuel et diagnostic vocal des composants physiques.</p>
       <div class="veille-tags">
-        <span>#MetaQuest3S</span><span>#HoloLens2</span><span>#RemoteAssist</span>
+        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#AndroidXR #GoogleIO-2025 #RemoteAssist</div>
       </div>
     </div>
-    
+
     <div class="glass-card veille-step" data-aos="fade-up" data-aos-delay="100">
       <div class="veille-header">
         <span class="veille-date">Fin 2025</span>
         <i class="fa-solid fa-brain veille-icon"></i>
       </div>
-      <h4>IA Contextuelle</h4>
-      <p class="veille-summary">Guidage visuel interactif par reconnaissance matérielle (ports, câbles).</p>
+      <div class="veille-img-container">
+        <img src="img-ar-ia.jpg" alt="IA Spatiale en production">
+      </div>
+      <h4>Réalité Spatiale & ERP</h4>
+      <p class="veille-summary">Fusion avec capteurs IoT et ERP : projection de données réseau et températures serveurs directement sur les machines physiques.</p>
       <div class="veille-tags">
-        <span>#MaintenanceIntelligente</span>
+        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#IoT #Infrastructure #MaintenanceIntelligente</div>
       </div>
     </div>
-    
+
     <div class="glass-card veille-step" data-aos="fade-up" data-aos-delay="200">
       <div class="veille-header">
         <span class="veille-date">Courant 2026</span>
         <i class="fa-solid fa-shield-virus veille-icon"></i>
       </div>
-      <h4>Sécurisation des Flux</h4>
-      <p class="veille-summary">Protection contre l'espionnage industriel via les caméras embarquées.</p>
+      <div class="veille-img-container">
+        <img src="img-ar-securite.jpg" alt="Sécurisation des flux AR">
+      </div>
+      <h4>Sécurisation des Flux AR</h4>
+      <p class="veille-summary">Nouveaux défis Cloud AR : mise en place de protocoles de chiffrement vidéo temps réel pour protéger les accès physiques de l'entreprise.</p>
       <div class="veille-tags">
-        <span class="tag-cyber">#Chiffrement </span><span class="tag-cyber">#RGPD </span><span class="tag-cyber">#Confidentialité </span>
+        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#SécuritéAR #ChiffrementAR #RGPD</div>
       </div>
     </div>
   </div>
@@ -711,34 +719,43 @@
         <span class="veille-date">Début 2025</span>
         <i class="fa-solid fa-waveform-lines veille-icon"></i>
       </div>
-      <h4>Clonage Instantané</h4>
-      <p class="veille-summary">Usurpation d'identité avec 3 secondes d'échantillon audio.</p>
+      <div class="veille-img-container">
+        <img src="img-cyber-clonage.jpg" alt="Visioconférence clonée Zoom">
+      </div>
+      <h4>Clonage & Visioconférence</h4>
+      <p class="veille-summary">Mars 2025, Singapour : Fraude Zoom spectaculaire. Deepfake vocal et visuel temps réel du CFO pour virement frauduleux.</p>
       <div class="veille-tags">
-        <span class="tag-cyber">#Vishing </span><span class="tag-cyber">#Helpdesk </span>
+        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Vishing #DeepfakeAudio #IA-Offensive</div>
       </div>
     </div>
-    
+
     <div class="glass-card veille-step" data-aos="fade-up" data-aos-delay="100">
       <div class="veille-header">
         <span class="veille-date">Fin 2025</span>
         <i class="fa-solid fa-money-bill-transfer veille-icon"></i>
       </div>
-      <h4>Fraude au Président 2.0</h4>
-      <p class="veille-summary">Arnaques financières massives automatisées lors de visioconférences.</p>
+      <div class="veille-img-container">
+        <img src="img-cyber-helpdesk.jpg" alt="Vishing kit sur Helpdesk">
+      </div>
+      <h4>Vishing As A Service</h4>
+      <p class="veille-summary">Kits automatisés ciblant les Helpdesks pour obtenir la réinitialisation des accès SSO. Maîtrise de l'intonation et de l'accent.</p>
       <div class="veille-tags">
-        <span class="tag-cyber">#DeepfakeAudio </span>
+        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Helpdesk #ScatteredSpider #SocialEngineering</div>
       </div>
     </div>
-    
+
     <div class="glass-card veille-step" data-aos="fade-up" data-aos-delay="200">
       <div class="veille-header">
         <span class="veille-date">Courant 2026</span>
         <i class="fa-solid fa-fingerprint veille-icon"></i>
       </div>
-      <h4>Biométrie Comportementale</h4>
-      <p class="veille-summary">Riposte défensive par analyse de signaux sonores inaudibles.</p>
+      <div class="veille-img-container">
+        <img src="img-cyber-biometrie.jpg" alt="Détection automated TruthScan">
+      </div>
+      <h4>Riposte Automatisée par API</h4>
+      <p class="veille-summary">Intégration directe dans les suites collaboration Cloud (TruthScan) pour détecter artefacts audio IA avant même l'appel.</p>
       <div class="veille-tags">
-        <span>#Watermarking </span><span>#IA-Défensive </span>
+        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Watermarking #IA-Défensive #VéritabilitéVocale</div>
       </div>
     </div>
   </div>
