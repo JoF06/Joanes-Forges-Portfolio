@@ -62,11 +62,11 @@
     /* --- Typography --- */
     h1, h2, h3 {
       font-weight: 800;
-      line-height: 1.2;
+      line-height: 1.5;
     }
     
     h2 {
-      font-size: 2.5rem;
+      font-size: 2.65rem;
       margin-bottom: 3rem;
       text-align: center;
       width: 100%;
@@ -88,7 +88,7 @@
     }
 
     a { text-decoration: none; color: inherit; transition: 0.3s; }
-    p { color: var(--text-muted); font-size: 1.1rem; }
+    p { color: var(--text-muted); font-size: 1.2rem; }
     strong { color: var(--primary); font-weight: 600; }
 
     /* --- Navigation (Floating Pill & Arrow) --- */
@@ -460,10 +460,10 @@
     <ul>
       <li><a href="#presentation" class="nav-link active"><i class="fa-solid fa-house"></i></a></li>
       <li><a href="#apropos" class="nav-link">À Propos</a></li>
-      <li><a href="#certifications" class="nav-link">Certifs</a></li>
-      <li><a href="#bts-sio" class="nav-link">BTS</a></li>
       <li><a href="#formation" class="nav-link">Parcours</a></li>
+      <li><a href="#certifications" class="nav-link">Certifs</a></li>
       <li><a href="#projets" class="nav-link">Projets</a></li>
+      <li><a href="#bts-sio" class="nav-link">BTS</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
   </nav>
@@ -499,7 +499,7 @@
               <i class="fa-solid fa-file-pdf"></i> Voir mon CV
             </a>
             <a href="Tableau_de_synthese_joanes.pdf" class="cta-outline" target="_blank" title="Lien vers le Tableau de Synthèse Excel">
-              <i class="fa-solid fa-file-excel"></i> Voir mon Tableau de Synthèse
+              <i class="fa-solid fa-file-excel"></i> Voir mon Tableau de Synthèse de réalisations professionnelles
             </a>
           </div>
 
@@ -559,6 +559,12 @@
       <h3>HTML / CSS</h3>
       <p>OpenClassrooms - Créez votre site web avec HTML5 et CSS3</p>
       <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--primary);">Maîtrise de la ligne de commande</div>
+    </div>
+    <div class="glass-card project-card" data-aos="zoom-in" data-aos-delay="200">
+      <div class="project-icon-wrapper"><img src="certif pix.png" alt="Certification PIX" height=120px></div>
+      <h3>PIX</h3>
+      <p>Compétences numériques polyvalentes et responsables</p>
+      <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--primary);">Rechercher, analyser, créer et gérer des contenus digitaux.</div>
     </div>
   </div>
 </section>
@@ -661,101 +667,103 @@
   <h2 data-aos="fade-up">Veille Technologique</h2>
 
   <h3 class="sub-section-title" data-aos="fade-right">
-    <i class="fa-solid fa-vr-cardboard"></i> Thème 1 : La Réalité Augmentée en Maintenance
+    <i class="fa-solid fa-vr-cardboard"></i> Thème 1 : Réalité Augmentée & SISR
   </h3>
   <div class="projects-grid">
+    
     <div class="glass-card veille-step" data-aos="fade-up">
       <div class="veille-header">
         <span class="veille-date">Début 2025</span>
         <i class="fa-solid fa-headset veille-icon"></i>
       </div>
       <div class="veille-img-container">
-        <img src="img-ar-materiel.jpg" alt="Lunettes AR pour assistance">
+        <img src="remote assist.jpg" alt="Lunettes IA">
       </div>
-      <h4>Démocratisation Matérielle</h4>
-      <p class="veille-summary">Google I/O 2025 : Gemini pour maintenance prédictive, scannage contextuel et diagnostic vocal des composants physiques.</p>
-      <div class="veille-tags">
-        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#AndroidXR #GoogleIO-2025 #RemoteAssist</div>
+      <h4>L'IA Embarquée</h4>
+      <p class="veille-summary">Diagnostic réseau réalisé par la voix des IA intégrées aux lunettes.</p>
+      <div class="veille-tags"  style="margin-top: 1.2rem;margin-right: 1.2rem;">
+        <span>#GoogleIO-2025</span><span>#Gemini</span><span>#Diagnostic</span>
       </div>
     </div>
 
     <div class="glass-card veille-step" data-aos="fade-up" data-aos-delay="100">
       <div class="veille-header">
         <span class="veille-date">Fin 2025</span>
-        <i class="fa-solid fa-brain veille-icon"></i>
+        <i class="fa-solid fa-server veille-icon"></i>
       </div>
       <div class="veille-img-container">
-        <img src="img-ar-ia.jpg" alt="IA Spatiale en production">
+        <img src="PTC VUFORIA.jpg" alt="Données serveurs AR">
       </div>
-      <h4>Réalité Spatiale & ERP</h4>
-      <p class="veille-summary">Fusion avec capteurs IoT et ERP : projection de données réseau et températures serveurs directement sur les machines physiques.</p>
+      <h4>Réalité Spatiale</h4>
+      <p class="veille-summary">Projection des données IoT et serveurs en temps réel sur les baies de brassage.</p>
       <div class="veille-tags">
-        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#IoT #Infrastructure #MaintenanceIntelligente</div>
+        <span>#IoT</span><span>#Infrastructure</span><span>#Monitoring</span>
       </div>
     </div>
 
     <div class="glass-card veille-step" data-aos="fade-up" data-aos-delay="200">
       <div class="veille-header">
-        <span class="veille-date">Courant 2026</span>
-        <i class="fa-solid fa-shield-virus veille-icon"></i>
+        <span class="veille-date">2026 (Aujourd'hui)</span>
+        <i class="fa-solid fa-shield-halved veille-icon"></i>
       </div>
       <div class="veille-img-container">
-        <img src="img-ar-securite.jpg" alt="Sécurisation des flux AR">
+        <img src="cloud sec.jpeg" alt="Sécurité Cloud AR">
       </div>
-      <h4>Sécurisation des Flux AR</h4>
-      <p class="veille-summary">Nouveaux défis Cloud AR : mise en place de protocoles de chiffrement vidéo temps réel pour protéger les accès physiques de l'entreprise.</p>
+      <h4>Sécurisation Cloud AR</h4>
+      <p class="veille-summary">Chiffrement strict des flux vidéo pour protéger les accès physiques de l'entreprise.</p>
       <div class="veille-tags">
-        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#SécuritéAR #ChiffrementAR #RGPD</div>
+        <span class="tag-cyber">#Chiffrement</span><span class="tag-cyber">#Confidentialité</span>
       </div>
     </div>
   </div>
 
   <h3 class="sub-section-title" data-aos="fade-right" style="margin-top: 4rem;">
-    <i class="fa-solid fa-user-secret"></i> Thème 2 : Deepfakes Vocaux & Cybersécurité
+    <i class="fa-solid fa-user-secret"></i> Thème 2 : Deepfakes Vocaux
   </h3>
   <div class="projects-grid">
+    
     <div class="glass-card veille-step" data-aos="fade-up">
       <div class="veille-header">
         <span class="veille-date">Début 2025</span>
-        <i class="fa-solid fa-waveform-lines veille-icon"></i>
+        <i class="fa-solid fa-video veille-icon"></i>
       </div>
       <div class="veille-img-container">
-        <img src="img-cyber-clonage.jpg" alt="Visioconférence clonée Zoom">
+        <img src="clonage-vocal-par-IA.jpg" alt="Fraude Zoom">
       </div>
-      <h4>Clonage & Visioconférence</h4>
-      <p class="veille-summary">Mars 2025, Singapour : Fraude Zoom spectaculaire. Deepfake vocal et visuel temps réel du CFO pour virement frauduleux.</p>
+      <h4>Piratage Haut Niveau</h4>
+      <p class="veille-summary">Fraude massive sur Zoom via le clonage vocal et visuel d'un directeur financier.</p>
       <div class="veille-tags">
-        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Vishing #DeepfakeAudio #IA-Offensive</div>
+        <span class="tag-cyber">#Deepfake</span><span class="tag-cyber">#Fraude</span><span class="tag-cyber">#Zoom</span>
       </div>
     </div>
 
     <div class="glass-card veille-step" data-aos="fade-up" data-aos-delay="100">
       <div class="veille-header">
         <span class="veille-date">Fin 2025</span>
-        <i class="fa-solid fa-money-bill-transfer veille-icon"></i>
+        <i class="fa-solid fa-headset veille-icon"></i>
       </div>
       <div class="veille-img-container">
-        <img src="img-cyber-helpdesk.jpg" alt="Vishing kit sur Helpdesk">
+        <img src="Quest-ce-que-le-vishing.jpg" alt="Attaque Helpdesk">
       </div>
-      <h4>Vishing As A Service</h4>
-      <p class="veille-summary">Kits automatisés ciblant les Helpdesks pour obtenir la réinitialisation des accès SSO. Maîtrise de l'intonation et de l'accent.</p>
+      <h4>Cible : Helpdesk</h4>
+      <p class="veille-summary">Industrialisation du "Vishing" pour usurper l'identité des employés et réinitialiser les accès.</p>
       <div class="veille-tags">
-        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Helpdesk #ScatteredSpider #SocialEngineering</div>
+        <span class="tag-cyber">#Vishing</span><span class="tag-cyber">#Helpdesk</span><span class="tag-cyber">#SSO</span>
       </div>
     </div>
 
     <div class="glass-card veille-step" data-aos="fade-up" data-aos-delay="200">
       <div class="veille-header">
-        <span class="veille-date">Courant 2026</span>
-        <i class="fa-solid fa-fingerprint veille-icon"></i>
+        <span class="veille-date">2026 (Aujourd'hui)</span>
+        <i class="fa-solid fa-robot veille-icon"></i>
       </div>
       <div class="veille-img-container">
-        <img src="img-cyber-biometrie.jpg" alt="Détection automated TruthScan">
+        <img src="images.jpg" alt="Analyse biométrique">
       </div>
-      <h4>Riposte Automatisée par API</h4>
-      <p class="veille-summary">Intégration directe dans les suites collaboration Cloud (TruthScan) pour détecter artefacts audio IA avant même l'appel.</p>
+      <h4>Riposte par IA</h4>
+      <p class="veille-summary">Analyse biométrique automatisée (API) pour bloquer les voix synthétiques en amont.</p>
       <div class="veille-tags">
-        <div style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">#Watermarking #IA-Défensive #VéritabilitéVocale</div>
+        <span>#IA-Défensive</span><span>#Biométrie</span><span>#API</span>
       </div>
     </div>
   </div>
